@@ -154,6 +154,13 @@ const {
         will-change: transform;
     }
 
+    /* Em mobile: animação mais rápida para percorrer todos os itens e loop mais perceptível */
+    @media (max-width: 768px) {
+        .tech-carousel-hero {
+            animation-duration: 11s;
+        }
+    }
+
     .tech-carousel-hero:hover {
         animation-play-state: paused;
     }

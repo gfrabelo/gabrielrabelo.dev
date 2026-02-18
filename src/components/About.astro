@@ -1,4 +1,4 @@
-<section id="sobre" class="py-32 relative overflow-hidden">
+<section id="sobre" class="py-16 md:py-32 relative overflow-hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none select-none flex flex-col items-center justify-center gap-4">
         <span class="block text-[80px] md:text-[140px] font-extrabold tracking-[-0.03em] leading-none text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-secondary to-transparent opacity-20 blur-[1px] whitespace-nowrap transform -rotate-2">
             DEVELOPER
@@ -14,8 +14,8 @@
                 <div class="relative w-72 h-72 md:w-96 md:h-96 avatar-glow rounded-full p-1">
                     <img src="/img/1f.jpg" alt="Gabriel Rabelo" class="w-full h-full object-cover rounded-full bg-bg-card z-10 relative grayscale-[20%] group-hover:grayscale-0 transition-all duration-500">
                 </div>
-                
-                <div class="absolute bottom-0 right-0 glass-card p-5 rounded-2xl animate-float border-l-4 border-l-accent-primary z-20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl bg-bg-card/80" style="animation-delay: 1s;">
+                <!-- Mobile: badge de cima mais no topo (evita o olho), de baixo mais embaixo. Desktop: posição original -->
+                <div class="absolute -bottom-6 right-0 lg:bottom-0 glass-card p-5 rounded-2xl animate-float border-l-4 border-l-accent-primary z-20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl bg-bg-card/80" style="animation-delay: 1s;">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-accent-primary/30 flex items-center justify-center text-accent-primary shadow-[0_0_20px_rgba(99,102,241,0.3)]">
                             <i data-lucide="code-2" class="w-6 h-6"></i>
@@ -26,8 +26,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="absolute top-10 left-0 glass-card p-5 rounded-2xl animate-float border-l-4 border-l-accent-tertiary z-20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl bg-bg-card/80">
+                <div class="absolute top-0 left-0 lg:top-10 lg:left-0 glass-card p-5 rounded-2xl animate-float border-l-4 border-l-accent-tertiary z-20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl bg-bg-card/80">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-accent-tertiary/30 flex items-center justify-center text-accent-tertiary shadow-[0_0_20px_rgba(6,182,212,0.3)]">
                             <i data-lucide="brain-circuit" class="w-6 h-6"></i>
