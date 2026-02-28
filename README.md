@@ -4,7 +4,7 @@
 
 Portfolio moderno construído com Astro e Tailwind CSS, destacando projetos de alto impacto para ANBIMA, Nike e Jequiti.
 
-🔗 **Link:** https://gfrabelo.github.io
+🔗 **Link:** https://www.gabrielrabelo.dev/
 
 ---
 
