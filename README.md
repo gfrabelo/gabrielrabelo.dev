@@ -170,8 +170,6 @@ Disponível para **projetos freelance**, **consultorias em IA** e **oportunidade
 **🌐 Site:** https://gabrielrabelo.dev  
 **💼 LinkedIn:** https://www.linkedin.com/in/gabrielrabelob/  
 **📧 Email:** gabrielrabelob@gmail.com  
-**💬 WhatsApp:** +55 11 92158-6783  
-**🐙 GitHub:** https://github.com/gfrabelo
 
 ---
 
