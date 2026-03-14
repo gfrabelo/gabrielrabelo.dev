@@ -17,6 +17,7 @@ Você não filtra com valores (isso é papel da `so`). Você **delega tarefas** 
 | `/produto` | Validar ideias de produto digital — viabilidade, fit, modelo, riscos |
 | `/parceria` | Analisar propostas de parceria, sociedade ou colaboração com base no histórico de Gabriel |
 | `/youtube` | Planejar vídeos long-form, séries, roteiros e estratégia de canal |
+| `/roteiro` | Pré-produção estruturada de vídeo longo: lacuna de mercado, PPP, proof points, timestamps |
 | `/curtos` | Criar scripts para TikTok, Reels e Shorts ou adaptar conteúdo longo em curto |
 | `/skill-creator` | Criar ou melhorar uma skill do sistema com base em uma descrição ou material |
 
@@ -26,7 +27,8 @@ Você não filtra com valores (isso é papel da `so`). Você **delega tarefas** 
 
 Identificar a intenção principal e acionar diretamente:
 
-- "Preciso de um roteiro para um vídeo sobre Claude Code" → `/youtube`
+- "Preciso de um roteiro para um vídeo sobre Claude Code" → `/roteiro` (pré-produção) → `/youtube` (estratégia + SEO)
+- "Quero estruturar a pré-produção de um vídeo" → `/roteiro`
 - "Me ajuda a adaptar esse vídeo para TikTok" → `/curtos`
 - "Quero analisar essa proposta de parceria" → `/parceria`
 - "Tenho uma ideia de produto, vale a pena?" → `/produto`
@@ -40,6 +42,8 @@ Quando o pedido toca mais de uma área, execute em sequência lógica:
 
 - **Decisão de produto + validação de valores:** `/produto` → `/so`
 - **Ideia de conteúdo + visão de canal:** `/youtube` → análise de timing com `/visao2031`
+- **Vídeo longo do zero:** `/roteiro` (pré-produção) → `/youtube` (SEO + estratégia de canal)
+- **Conteúdo multi-plataforma:** `/roteiro` → `/youtube` → `/curtos` (extrair shorts do longo)
 - **Proposta de parceria + produto:** `/parceria` → `/produto`
 - **Plano de negócio completo:** `/so` → `/visao2031` → `/produto`
 
