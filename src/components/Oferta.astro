@@ -1,0 +1,107 @@
+---
+const ofertas = [
+    {
+        icon: "globe",
+        color: "primary",
+        titulo: "Site que capta cliente",
+        subtitulo: "Site institucional, landing page, Google",
+        desc: "Site rápido, que abre bem no celular e aparece quando alguém busca pelo seu serviço na sua cidade. Feito pra gerar contato, não pra ser folder digital.",
+        itens: [
+            "Carrega rápido no 4G do cliente",
+            "Botão de WhatsApp em todo lugar certo",
+            "Aparece no Google da sua região",
+        ],
+    },
+    {
+        icon: "message-circle",
+        color: "success",
+        titulo: "WhatsApp que atende sozinho",
+        subtitulo: "Atendimento e agendamento automático",
+        desc: "Responde o cliente na hora, tira as dúvidas de sempre e já joga o horário na sua agenda. Funciona de madrugada, no fim de semana e enquanto você está atendendo outra pessoa.",
+        itens: [
+            "Responde em segundos, 24h por dia",
+            "Pré-agenda direto na sua agenda",
+            "Passa pra pessoa quando precisa",
+        ],
+    },
+    {
+        icon: "workflow",
+        color: "tertiary",
+        titulo: "CRM e bastidor no automático",
+        subtitulo: "CRM automatizado, integrações e lembretes",
+        desc: "Todo lead que chega entra sozinho no seu CRM, com origem e histórico, sem ninguém digitar nada. Junto vai o resto do trabalho invisível: lembrete de retorno, confirmação de horário e o relatório do mês.",
+        itens: [
+            "CRM que se alimenta sozinho",
+            "Lembrete de retorno e confirmação",
+            "Você enxerga de onde vem cada cliente",
+        ],
+    },
+];
+
+const colorMap: Record<string, { text: string; bg: string; line: string; shadow: string }> = {
+    primary: { text: "text-accent-primary", bg: "from-accent-primary/20", line: "from-accent-primary", shadow: "rgba(99,102,241,0.2)" },
+    secondary: { text: "text-accent-secondary", bg: "from-accent-secondary/20", line: "from-accent-secondary", shadow: "rgba(139,92,246,0.2)" },
+    tertiary: { text: "text-accent-tertiary", bg: "from-accent-tertiary/20", line: "from-accent-tertiary", shadow: "rgba(6,182,212,0.2)" },
+    success: { text: "text-accent-success", bg: "from-accent-success/20", line: "from-accent-success", shadow: "rgba(16,185,129,0.2)" },
+};
+
+const whatsapp = "https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona.";
+---
+
+<section id="oferta" class="py-16 md:py-32 relative">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl opacity-20 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-radial from-accent-primary/20 to-transparent blur-[100px]"></div>
+    </div>
+
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+        <div class="text-center mb-20 reveal">
+            <h2 class="text-sm font-bold text-accent-tertiary tracking-widest uppercase mb-4">O que eu faço</h2>
+            <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+                Seu negócio para de perder cliente
+            </h2>
+            <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                A maioria dos negócios de serviço perde cliente por dois motivos: não é achado
+                na internet, ou demora pra responder. Eu resolvo os dois.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {ofertas.map((o, i) => (
+                <div class="group glass-card p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[32px] relative overflow-hidden reveal" style={`transition-delay: ${i * 100}ms;`}>
+                    <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${colorMap[o.color].line} to-transparent opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+
+                    <div class={`w-20 h-20 rounded-2xl bg-gradient-to-br ${colorMap[o.color].bg} to-transparent flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/5`} style={`box-shadow: 0 0 30px ${colorMap[o.color].shadow};`}>
+                        <i data-lucide={o.icon} class={`w-10 h-10 ${colorMap[o.color].text} group-hover:animate-pulse`}></i>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mb-2">{o.titulo}</h3>
+                    <p class={`text-xs font-mono ${colorMap[o.color].text} mb-6 uppercase tracking-wider`}>{o.subtitulo}</p>
+
+                    <p class="text-text-secondary leading-relaxed mb-8 text-sm">{o.desc}</p>
+
+                    <ul class="space-y-4 mb-10">
+                        {o.itens.map((item) => (
+                            <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
+                                <i data-lucide="check" class={`w-4 h-4 ${colorMap[o.color].text}`}></i> {item}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <a href={whatsapp} target="_blank" class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium flex items-center justify-center gap-2 group-hover:bg-accent-primary group-hover:border-accent-primary transition-all">
+                        Pedir orçamento <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            ))}
+        </div>
+
+        <p class="text-center text-text-muted text-sm mt-12 reveal">
+            Não sabe do que precisa? Me chama que eu digo o que faz sentido no seu caso, sem compromisso.
+        </p>
+    </div>
+</section>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

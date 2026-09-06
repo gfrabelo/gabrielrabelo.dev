@@ -7,9 +7,43 @@ interface Props {
 }
 
 const {
-  title = 'Gabriel Rabelo | Full-Stack Engineer & AI Specialist',
-  description = 'Full-Stack Engineer & AI Specialist. 8 anos construindo software, hoje com IA como copiloto. ANBIMA, Nike, ZenFlow.'
+  title = 'Criação de Sites e Automação de WhatsApp | Santos e São Paulo',
+  description = 'Site que traz cliente e atendimento automático no WhatsApp para clínicas e negócios de serviço em Santos, Baixada Santista e São Paulo. Orçamento sem compromisso.'
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/img/coding.png', Astro.site).href;
+
+// Local business schema: this is what makes Google understand *what* is sold and
+// *where*, which is the whole game for local service search.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Gabriel Rabelo | Sites e Automação',
+  description,
+  url: 'https://gabrielrabelo.dev',
+  telephone: '+5511921586783',
+  email: 'gabrielrabelob@gmail.com',
+  priceRange: '$$',
+  image: ogImage,
+  founder: { '@type': 'Person', name: 'Gabriel Rabelo' },
+  areaServed: [
+    'Santos', 'São Vicente', 'Guarujá', 'Praia Grande', 'Cubatão',
+    'Peruíbe', 'Itanhaém', 'Mongaguá', 'Bertioga', 'São Paulo',
+  ].map((city) => ({ '@type': 'City', name: city })),
+  knowsAbout: [
+    'Criação de sites',
+    'Landing page',
+    'Automação de WhatsApp',
+    'Chatbot de atendimento',
+    'Agendamento automático',
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/gabrielrabelob/',
+    'https://github.com/gfrabelo',
+    'https://www.youtube.com/@GabrielRabeloIA',
+  ],
+};
 ---
 
 <!DOCTYPE html>
@@ -21,17 +55,29 @@ const {
     <meta name="description" content={description}>
     <meta name="robots" content="index, follow">
     <meta name="author" content="Gabriel Rabelo">
+    <link rel="canonical" href={canonical}>
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Gabriel Rabelo">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
-    <meta property="og:image" content="https://gabrielrabelo.vercel.app/img/coding.png">
-    <meta property="og:url" content="https://gabrielrabelo.vercel.app">
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:url" content={canonical}>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
+
     <link rel="shortcut icon" type="image/png" href="/img/favicon.ico">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script is:inline src="https://unpkg.com/lucide@latest" defer></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 </head>
 <body class="relative text-text-primary antialiased selection:bg-accent-primary selection:text-white">
     <slot />
@@ -57,11 +103,13 @@ const {
         transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    .glass-card:hover {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
-        transform: translateY(-8px) scale(1.01);
+    @media (hover: hover) {
+        .glass-card:hover {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+            transform: translateY(-8px) scale(1.01);
+        }
     }
 
     .glass-nav {
@@ -185,4 +233,5 @@ const {
         transform: scale(1.2) translateY(-3px);
         opacity: 1;
     }
+
 </style>

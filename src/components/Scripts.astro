@@ -2,11 +2,12 @@
 ---
 
 <script is:inline>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
+        // lucide is loaded with `defer`, so it only exists by DOMContentLoaded.
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
         const reveals = document.querySelectorAll('.reveal');
 
         const revealOnScroll = () => {

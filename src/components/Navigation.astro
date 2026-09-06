@@ -1,3 +1,10 @@
+---
+interface Props {
+    basePath?: string;
+}
+const { basePath = "" } = Astro.props;
+---
+
 <nav
     class="fixed top-0 w-full z-50 glass-nav h-20 transition-all duration-300"
     aria-label="Navegação principal"
@@ -5,7 +12,7 @@
     <div
         class="container mx-auto px-6 lg:px-12 h-full flex justify-between items-center max-w-7xl"
     >
-        <a href="#home" class="group flex items-center gap-2">
+        <a href={`${basePath}#home`} class="group flex items-center gap-2">
             <span
                 class="text-xl font-bold tracking-tight text-white/90 group-hover:text-white transition-colors duration-300"
                 >Gabriel Rabelo<span class="text-accent-primary">.</span></span
@@ -14,43 +21,34 @@
 
         <div class="hidden md:flex items-center gap-8">
             <a
-                href="#home"
+                href={`${basePath}#oferta`}
                 class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
             >
-                Home
+                O que eu faço
                 <span
                     class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
                 ></span>
             </a>
             <a
-                href="#sobre"
+                href={`${basePath}#prova`}
                 class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
             >
-                Sobre
+                Resultados
                 <span
                     class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
                 ></span>
             </a>
             <a
-                href="#services"
+                href={`${basePath}#como-funciona`}
                 class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
             >
-                Serviços
+                Como funciona
                 <span
                     class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
                 ></span>
             </a>
             <a
-                href="#portfolio"
-                class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
-            >
-                Portfolio
-                <span
-                    class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
-                ></span>
-            </a>
-            <a
-                href="#contato"
+                href={`${basePath}#contato`}
                 class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
             >
                 Contato
@@ -60,17 +58,14 @@
             </a>
         </div>
 
-        <!-- CTA -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3">
             <a
-                href="#contato"
-                class="hidden md:flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent-primary/50 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group relative overflow-hidden"
+                href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona."
+                target="_blank"
+                class="hidden md:flex items-center gap-2 bg-accent-success/10 hover:bg-accent-success/20 border border-accent-success/40 hover:border-accent-success text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group relative overflow-hidden"
             >
-                <span class="relative z-10">Vamos Conversar</span>
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-accent-primary/20 to-accent-tertiary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                </div>
+                <i data-lucide="message-circle" class="w-4 h-4 text-accent-success"></i>
+                <span class="relative z-10">Pedir orçamento</span>
             </a>
             <!-- Fluid Menu for Mobile -->
             <div class="md:hidden relative z-50">
@@ -126,48 +121,49 @@
                         <!-- Items Container -->
                         <!-- Item 1: Home -->
                         <a
-                            href="#home"
+                            href={`${basePath}#home`}
                             class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
                             style="z-index: 40;"
                             aria-label="Home"
                         >
                             <i data-lucide="home" class="w-5 h-5"></i>
                         </a>
-                        <!-- Item 2: About -->
+                        <!-- Item 2: O que eu faço -->
                         <a
-                            href="#sobre"
+                            href={`${basePath}#oferta`}
                             class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
                             style="z-index: 39;"
-                            aria-label="Sobre"
+                            aria-label="O que eu faço"
                         >
-                            <i data-lucide="user" class="w-5 h-5"></i>
+                            <i data-lucide="layout-grid" class="w-5 h-5"></i>
                         </a>
-                        <!-- Item 3: Services -->
+                        <!-- Item 3: Resultados -->
                         <a
-                            href="#services"
+                            href={`${basePath}#prova`}
                             class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
                             style="z-index: 38;"
-                            aria-label="Serviços"
+                            aria-label="Resultados"
                         >
-                            <i data-lucide="briefcase" class="w-5 h-5"></i>
+                            <i data-lucide="chart-no-axes-column" class="w-5 h-5"></i>
                         </a>
-                        <!-- Item 4: Portfolio -->
+                        <!-- Item 4: Como funciona -->
                         <a
-                            href="#portfolio"
+                            href={`${basePath}#como-funciona`}
                             class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
                             style="z-index: 37;"
-                            aria-label="Portfolio"
+                            aria-label="Como funciona"
                         >
-                            <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+                            <i data-lucide="route" class="w-5 h-5"></i>
                         </a>
-                        <!-- Item 5: Contact -->
+                        <!-- Item 5: WhatsApp -->
                         <a
-                            href="#contato"
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
+                            href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona."
+                            target="_blank"
+                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-accent-success/20 backdrop-blur-md border border-accent-success/40 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
                             style="z-index: 36;"
-                            aria-label="Contato"
+                            aria-label="Falar no WhatsApp"
                         >
-                            <i data-lucide="mail" class="w-5 h-5"></i>
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
                         </a>
                     </div>
                 </div>

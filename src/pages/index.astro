@@ -2,426 +2,154 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
+import Oferta from '../components/Oferta.astro';
+import Cases from '../components/Cases.astro';
+import ComoFunciona from '../components/ComoFunciona.astro';
 import About from '../components/About.astro';
+import LegacyTile from '../components/LegacyTile.astro';
 import Footer from '../components/Footer.astro';
 import Scripts from '../components/Scripts.astro';
+
+const legacyRow1 = [
+    { src: '/img/anbima.webp', alt: 'ANBIMA Certificações', category: 'Enterprise', title: 'ANBIMA Certificações', desc: 'Sistema de certificações financeiras com +120 MRs. Next.js, Zustand, Adyen.', chip: 'ANBIMA 2024-2026', accent: 'primary' as const, idleBorder: true },
+    { src: '/img/zenflow.webp', alt: 'ZenFlow', category: 'Aprendizado', title: 'ZenFlow', desc: 'Assistente financeiro com WhatsApp + IA que não validou mercado. Mas foi a ponte: o sócio da Nexus me achou por causa dele.', chip: 'Descontinuado', accent: 'success' as const, idleBorder: true },
+    { src: '/img/membership-nike.webp', alt: 'Nike Membership', category: 'E-Commerce', title: 'Nike Membership', desc: 'Plataforma de fidelidade e benefícios exclusivos.', chip: 'Nike Brasil', accent: 'primary' as const },
+    { src: '/img/central-de-uniformes-nike.webp', alt: 'Nike Central de Uniformes', category: 'B2B Platform', title: 'Central de Uniformes', desc: 'Sistema de gestão de uniformes corporativos Nike.', chip: 'Nike Brasil', accent: 'tertiary' as const },
+];
+
+const legacyRow2 = [
+    { src: '/img/cartao-presente-nike.webp', alt: 'Nike Cartão Presente', category: 'Gift Cards', title: 'Cartão Presente', desc: 'Plataforma de gift cards digitais Nike.', chip: 'Nike Brasil', accent: 'secondary' as const },
+    { src: '/img/encontre-seu-tenis.webp', alt: 'Nike Encontre seu tênis', category: 'Interactive', title: 'Encontre seu Tênis', desc: 'Quiz interativo para recomendação de produtos.', chip: 'Nike Brasil', accent: 'success' as const },
+    { src: '/img/carlinhos-maia-jequiti.webp', alt: 'Promo Jequiti Carlinhos Maia', category: 'Campaign', title: 'Promo Carlinhos Maia', desc: 'Landing page promocional pra campanha nacional.', chip: 'Jequiti', accent: 'primary' as const },
+    { src: '/img/eliana-jequiti.webp', alt: 'Promo Jequiti Eliana', category: 'Campaign', title: 'Promo Eliana', desc: 'Campanha digital com alta taxa de conversão.', chip: 'Jequiti', accent: 'secondary' as const },
+];
 ---
 
 <BaseLayout>
     <Navigation />
     <Hero />
+    <Oferta />
+    <Cases />
     <About />
-    
-    <section id="services" class="py-16 md:py-32 relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl opacity-20 pointer-events-none">
-            <div class="absolute inset-0 bg-gradient-radial from-accent-primary/20 to-transparent blur-[100px]"></div>
-        </div>
 
-        <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-sm font-bold text-accent-tertiary tracking-widest uppercase mb-4">Soluções</h2>
-                <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">Como Posso Te Ajudar</h2>
-                <p class="text-text-secondary text-lg max-w-2xl mx-auto">Produto completo ou consultoria pontual em IA: o que fizer sentido pro seu momento.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group glass-card p-10 rounded-[32px] relative overflow-hidden reveal">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    
-                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-primary/20 to-transparent flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/5 shadow-[0_0_30px_rgba(99,102,241,0.2)]">
-                        <i data-lucide="code-2" class="w-10 h-10 text-accent-primary group-hover:animate-pulse"></i>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold text-white mb-2">Desenvolvimento Full-Stack</h3>
-                    <p class="text-xs font-mono text-accent-primary mb-6 uppercase tracking-wider">Next.js, React, Angular & Node</p>
-                    
-                    <p class="text-text-secondary leading-relaxed mb-8 text-sm">
-                        Sistemas para empresas grandes e SaaS que aguentam crescer. Do primeiro protótipo à produção, com arquitetura que não vira dívida técnica em seis meses.
-                    </p>
-
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-primary"></i> SPAs Rápidas de Verdade
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-primary"></i> Integrações Complexas
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-primary"></i> Arquitetura Pensada pra Crescer
-                        </li>
-                    </ul>
-                    
-                    <a href="#contato" class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium flex items-center justify-center gap-2 group-hover:bg-accent-primary group-hover:border-accent-primary transition-all">
-                        Conversar sobre Projeto <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="group glass-card p-10 rounded-[32px] relative overflow-hidden reveal border-2 border-accent-secondary/20" style="transition-delay: 100ms;">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-secondary/20 to-transparent flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/5 shadow-[0_0_30px_rgba(139,92,246,0.2)]">
-                        <i data-lucide="brain-circuit" class="w-10 h-10 text-accent-secondary group-hover:animate-pulse"></i>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold text-white mb-2">Consultoria em IA</h3>
-                    <p class="text-xs font-mono text-accent-secondary mb-6 uppercase tracking-wider">Auditoria & Implementação</p>
-                    
-                    <p class="text-text-secondary leading-relaxed mb-8 text-sm">
-                        Entro na empresa, vejo onde IA resolve de verdade (e onde é só modismo) e implemento. Sem vender IA por vender.
-                    </p>
-
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-secondary"></i> Auditoria de Processos
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-secondary"></i> Automações que Funcionam Sozinhas
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-secondary"></i> Fine-tuning & RAG
-                        </li>
-                    </ul>
-                    
-                    <a href="#contato" class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium flex items-center justify-center gap-2 group-hover:bg-accent-secondary group-hover:border-accent-secondary transition-all">
-                        Solicitar Auditoria <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <div class="group glass-card p-10 rounded-[32px] relative overflow-hidden reveal" style="transition-delay: 200ms;">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-tertiary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-tertiary/20 to-transparent flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/5 shadow-[0_0_30px_rgba(6,182,212,0.2)]">
-                        <i data-lucide="workflow" class="w-10 h-10 text-accent-tertiary group-hover:animate-pulse"></i>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold text-white mb-2">Automações Robustas</h3>
-                    <p class="text-xs font-mono text-accent-tertiary mb-6 uppercase tracking-wider">N8N, APIs & Webhooks</p>
-                    
-                    <p class="text-text-secondary leading-relaxed mb-8 text-sm">
-                        Conecto sistemas que não se falam, automatizo o que é repetitivo e deixo rodando, sem você precisar lembrar que existe.
-                    </p>
-
-                    <ul class="space-y-4 mb-10">
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-tertiary"></i> Chatbots que Resolvem
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-tertiary"></i> Integrações WhatsApp
-                        </li>
-                        <li class="flex items-center gap-3 text-sm text-text-muted group-hover:text-text-primary transition-colors">
-                            <i data-lucide="check" class="w-4 h-4 text-accent-tertiary"></i> Onboarding Automatizado
-                        </li>
-                    </ul>
-                    
-                    <a href="#contato" class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium flex items-center justify-center gap-2 group-hover:bg-accent-tertiary group-hover:border-accent-tertiary transition-all">
-                        Ver Como Funciona <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="process" class="py-16 md:py-32 relative overflow-hidden bg-bg-surface border-y border-white/5">
-        <div class="container mx-auto px-6 lg:px-12 max-w-5xl">
-            <div class="mb-24 reveal text-center">
-                <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Processo de Trabalho</h2>
-                <p class="mt-4 text-text-secondary">Sem burocracia, sem enrolação. Só as etapas que realmente importam.</p>
-            </div>
-
-            <div class="relative">
-                <div class="absolute left-[19px] md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-primary via-accent-tertiary to-transparent md:-translate-x-1/2"></div>
-                <div class="absolute left-[18px] md:left-1/2 top-0 h-1/3 w-[4px] bg-accent-glow blur-sm md:-translate-x-1/2 animate-pulse"></div>
-
-                <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0 mb-24 group reveal">
-                    <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 pl-12 md:pl-0">
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-accent-primary transition-colors">Descoberta & Briefing</h3>
-                        <p class="text-text-secondary text-base">Entendo o que você precisa e por quê, não só o que foi pedido. Alinhamos escopo e expectativa antes da primeira linha de código.</p>
-                    </div>
-                    <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-bg-main border-2 border-accent-primary z-10 md:-translate-x-1/2 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.5)] order-1 group-hover:scale-110 transition-transform">
-                        <div class="w-3 h-3 bg-accent-primary rounded-full animate-pulse"></div>
-                    </div>
-                    <div class="absolute -top-10 left-12 md:left-auto md:right-1/2 md:mr-20 text-[140px] font-bold text-white/5 pointer-events-none select-none leading-none group-hover:text-white/10 transition-colors">01</div>
-                    <div class="md:w-1/2 md:pl-16 order-3 hidden md:block"></div>
-                </div>
-
-                <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0 mb-24 group reveal">
-                    <div class="md:w-1/2 md:pr-16 hidden md:block"></div>
-                    <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-bg-main border-2 border-accent-secondary z-10 md:-translate-x-1/2 flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.5)] group-hover:scale-110 transition-transform">
-                        <div class="w-3 h-3 bg-accent-secondary rounded-full"></div>
-                    </div>
-                    <div class="md:w-1/2 md:pl-16 order-2 pl-12 md:pl-16">
-                        <div class="absolute -top-10 left-12 md:left-auto md:ml-4 text-[140px] font-bold text-white/5 pointer-events-none select-none leading-none group-hover:text-white/10 transition-colors">02</div>
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-accent-secondary transition-colors">Design & Prototipação</h3>
-                        <p class="text-text-secondary text-base">Wireframes e protótipos interativos pra validar a experiência antes de gastar tempo, seu e meu, construindo a coisa errada.</p>
-                    </div>
-                </div>
-
-                <div class="relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0 group reveal">
-                    <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 pl-12 md:pl-0">
-                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-accent-tertiary transition-colors">Desenvolvimento & Entrega</h3>
-                        <p class="text-text-secondary text-base">Escrevo o código, testo de verdade (não só no meu ambiente) e entrego algo pronto pra produção, não só pra demo.</p>
-                    </div>
-                    <div class="absolute left-0 md:left-1/2 w-10 h-10 rounded-full bg-bg-main border-2 border-accent-tertiary z-10 md:-translate-x-1/2 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.5)] order-1 group-hover:scale-110 transition-transform">
-                        <div class="w-3 h-3 bg-accent-tertiary rounded-full"></div>
-                    </div>
-                    <div class="absolute -top-10 left-12 md:left-auto md:right-1/2 md:mr-20 text-[140px] font-bold text-white/5 pointer-events-none select-none leading-none group-hover:text-white/10 transition-colors">03</div>
-                    <div class="md:w-1/2 md:pl-16 order-3 hidden md:block"></div>
-                </div>
-            </div>
-            
-            <div class="mt-20 text-center reveal">
-                 <a href="#contato" class="inline-flex items-center gap-3 bg-gradient-to-r from-accent-primary to-accent-secondary text-white font-bold py-4 px-8 rounded-full shadow-[0_10px_30px_rgba(99,102,241,0.4)] hover:shadow-[0_15px_40px_rgba(99,102,241,0.6)] hover:-translate-y-1 transition-all duration-300">
-                    Começar Projeto
-                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio" class="py-16 md:py-32 bg-bg-surface relative border-y border-white/5">
+    <section id="trabalhos-anteriores" class="py-16 md:py-32 bg-bg-surface relative border-y border-white/5">
         <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
                 <div>
-                    <h2 class="text-sm font-bold text-accent-success tracking-widest uppercase mb-4">Portfolio</h2>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Projetos de Alto Impacto</h2>
-                    <p class="text-text-secondary">Uma seleção de trabalhos para marcas renomadas e projetos freelance.</p>
+                    <h2 class="text-sm font-bold text-accent-success tracking-widest uppercase mb-4">Onde já entreguei</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Marcas que confiaram esse trabalho a mim</h2>
+                    <p class="text-text-secondary">Nike, ANBIMA e Jequiti. Projeto grande, prazo apertado, no ar funcionando.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl border-2 border-accent-primary/20">
-                    <img src="/img/anbima.png" alt="ANBIMA Certificações" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-primary text-xs font-bold uppercase tracking-widest">Enterprise</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">ANBIMA Certificações</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Sistema de certificações financeiras com +120 MRs. Next.js, Zustand, Adyen.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-primary/20 text-accent-primary font-mono text-sm font-bold border border-accent-primary/20">
-                                ANBIMA 2024-2026
-                            </div>
-                        </div>
+            <div class="portfolio-marquee-wrapper reveal space-y-6">
+                <div class="portfolio-marquee-mask relative w-full overflow-hidden">
+                    <div class="portfolio-marquee-row flex gap-6" data-row="1">
+                        {[...legacyRow1, ...legacyRow1, ...legacyRow1].map((tile) => (
+                            <LegacyTile {...tile} />
+                        ))}
                     </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-primary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
                 </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl border-2 border-accent-success/20" style="transition-delay: 100ms;">
-                    <img src="/img/zenflow.png" alt="ZenFlow" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-success text-xs font-bold uppercase tracking-widest">SaaS B2C</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">ZenFlow</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Assistente financeiro com WhatsApp + IA. React, Supabase, N8N, GPT-4o.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-success/20 text-accent-success font-mono text-sm font-bold border border-accent-success/20">
-                                app.zenflow.pro
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-success/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl">
-                    <img src="/img/membership-nike.png" alt="Nike Membership" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-primary text-xs font-bold uppercase tracking-widest">E-Commerce</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Nike Membership</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Plataforma de fidelidade e benefícios exclusivos.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-primary/20 text-accent-primary font-mono text-sm font-bold border border-accent-primary/20">
-                                Nike Brasil
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-primary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl" style="transition-delay: 100ms;">
-                    <img src="/img/central-de-uniformes-nike.png" alt="Nike Central de Uniformes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-tertiary text-xs font-bold uppercase tracking-widest">B2B Platform</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Central de Uniformes</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Sistema de gestão de uniformes corporativos Nike.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-tertiary/20 text-accent-tertiary font-mono text-sm font-bold border border-accent-tertiary/20">
-                                Nike Brasil
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-tertiary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl" style="transition-delay: 200ms;">
-                    <img src="/img/cartao-presente-nike.png" alt="Nike Cartão Presente" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-secondary text-xs font-bold uppercase tracking-widest">Gift Cards</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Cartão Presente</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Plataforma de gift cards digitais Nike.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-secondary/20 text-accent-secondary font-mono text-sm font-bold border border-accent-secondary/20">
-                                Nike Brasil
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-secondary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl">
-                    <img src="/img/encontre-seu-tenis.png" alt="Nike Encontre seu tênis" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-success text-xs font-bold uppercase tracking-widest">Interactive</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Encontre seu Tênis</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Quiz interativo para recomendação de produtos.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-success/20 text-accent-success font-mono text-sm font-bold border border-accent-success/20">
-                                Nike Brasil
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-success/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl" style="transition-delay: 100ms;">
-                    <img src="/img/carlinhos-maia-jequiti.png" alt="Promo Jequiti Carlinhos Maia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-primary text-xs font-bold uppercase tracking-widest">Campaign</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Promo Carlinhos Maia</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Landing page promocional pra campanha nacional.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-primary/20 text-accent-primary font-mono text-sm font-bold border border-accent-primary/20">
-                                Jequiti
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-primary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-                <div class="group relative rounded-3xl overflow-hidden aspect-[4/3] cursor-pointer reveal shadow-2xl" style="transition-delay: 200ms;">
-                    <img src="/img/eliana-jequiti.png" alt="Promo Jequiti Eliana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-main via-bg-main/80 to-transparent opacity-90 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-8 backdrop-blur-[2px] group-hover:backdrop-blur-none">
-                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-accent-secondary text-xs font-bold uppercase tracking-widest">Campaign</span>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Promo Eliana</h3>
-                            <p class="text-text-secondary text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">Campanha digital com alta taxa de conversão.</p>
-                            <div class="inline-block px-3 py-1 rounded bg-accent-secondary/20 text-accent-secondary font-mono text-sm font-bold border border-accent-secondary/20">
-                                Jequiti
-                            </div>
-                        </div>
-                    </div>
-                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-accent-secondary/30 rounded-3xl transition-colors duration-300 pointer-events-none"></div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-32 relative bg-bg-main">
-        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
-            <div class="glass-card rounded-[40px] p-8 md:p-16 border border-white/10 relative overflow-hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-                    <div>
-                        <span class="text-accent-primary font-bold tracking-wider text-sm uppercase mb-4 block">Resultados Mensuráveis</span>
-                        <h2 class="text-2xl md:text-4xl font-bold text-white mb-6">Engenharia de produtos. <br>Velocidade com IA.</h2>
-                        <p class="text-text-secondary text-lg mb-6 leading-relaxed">
-                            Escrevo código há 8 anos, mas hoje entrego mais que código: penso em negócio, arquitetura e experiência antes de abrir o teclado. IA é <strong class="text-white">copiloto</strong> nesse processo, não substituto do meu julgamento.
-                        </p>
-                        <p class="text-text-secondary text-lg mb-8 leading-relaxed">
-                            Na prática: <strong class="text-white">prazos mais curtos</strong>, sem abrir mão de arquitetura sólida ou código que outro dev consegue entender depois.
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div class="flex flex-col">
-                                <span class="text-2xl font-bold text-white">+120</span>
-                                <span class="text-xs text-text-muted uppercase">MRs na ANBIMA</span>
-                            </div>
-                            <div class="w-px h-10 bg-white/10"></div>
-                            <div class="flex flex-col">
-                                <span class="text-2xl font-bold text-white">8 Anos</span>
-                                <span class="text-xs text-text-muted uppercase">Experiência</span>
-                            </div>
-                            <div class="w-px h-10 bg-white/10"></div>
-                            <div class="flex flex-col">
-                                <span class="text-2xl font-bold text-white">Full-Stack</span>
-                                <span class="text-xs text-text-muted uppercase">+ AI</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative h-[400px] rounded-2xl overflow-hidden group">
-                        <img src="/img/coding.png" alt="Gabriel Rabelo trabalhando" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-r from-bg-card via-transparent to-transparent opacity-60"></div>
-                        <div class="absolute bottom-6 left-6 glass-card px-4 py-2 rounded-lg flex items-center gap-2">
-                             <i data-lucide="zap" class="w-4 h-4 text-accent-primary"></i>
-                             <span class="text-sm font-medium text-white">AI Builder</span>
-                        </div>
+                <div class="portfolio-marquee-mask relative w-full overflow-hidden">
+                    <div class="portfolio-marquee-row flex gap-6" data-row="2">
+                        {[...legacyRow2, ...legacyRow2, ...legacyRow2].map((tile) => (
+                            <LegacyTile {...tile} />
+                        ))}
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <style>
+        .portfolio-marquee-mask {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+        .portfolio-marquee-row {
+            will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .portfolio-marquee-row {
+                transform: none !important;
+            }
+        }
+    </style>
+
+    <script>
+        function initPortfolioMarquee() {
+            const section = document.getElementById('trabalhos-anteriores');
+            const rowEl1 = section?.querySelector('[data-row="1"]') as HTMLElement | null;
+            const rowEl2 = section?.querySelector('[data-row="2"]') as HTMLElement | null;
+            if (!section || !rowEl1 || !rowEl2) return;
+            const row1: HTMLElement = rowEl1;
+            const row2: HTMLElement = rowEl2;
+
+            const K = 140;
+            let sectionTop = 0;
+
+            function measure() {
+                sectionTop = section.getBoundingClientRect().top + window.scrollY;
+            }
+            measure();
+
+            let ticking = false;
+            function update() {
+                const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
+                row1.style.transform = `translateX(${offset - K}px)`;
+                row2.style.transform = `translateX(${-(offset - K)}px)`;
+                ticking = false;
+            }
+            function onScroll() {
+                if (!ticking) {
+                    window.requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
+            update();
+        }
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            initPortfolioMarquee();
+        }
+    </script>
+
+    <ComoFunciona />
 
     <section id="contato" class="py-16 md:py-32 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-radial from-accent-primary/10 to-bg-main z-0 pointer-events-none"></div>
         <div class="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-        
+
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
             <div class="max-w-2xl w-full glass-card p-8 md:p-14 rounded-[40px] border border-white/10 shadow-2xl reveal relative overflow-hidden">
-                
+
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-accent-primary to-transparent opacity-50 blur-sm"></div>
 
                 <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Vamos trabalhar juntos?</h2>
-                    <p class="text-text-secondary text-lg">Me conta o que você tá tentando resolver. A gente vê juntos se faz sentido.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Quanto está te custando ficar como está?</h2>
+                    <p class="text-text-secondary text-lg">Me manda uma mensagem contando do seu negócio. Eu respondo pessoalmente e digo se dá pra ajudar.</p>
                 </div>
 
                 <div class="space-y-4">
-                    <a href="https://www.linkedin.com/in/gabrielrabelob/" target="_blank" class="w-full py-5 glass-card rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-accent-primary group">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-accent-primary"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">LinkedIn</span>
+                    <a href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona." target="_blank" class="w-full py-5 bg-accent-success/15 hover:bg-accent-success/25 rounded-xl text-white font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-accent-success/50 hover:border-accent-success group">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-accent-success"></i>
+                        <span class="group-hover:translate-x-1 transition-transform">Falar no WhatsApp</span>
                     </a>
 
                     <a href="mailto:gabrielrabelob@gmail.com" class="w-full py-5 glass-card rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-accent-secondary group">
                         <i data-lucide="mail" class="w-6 h-6 text-accent-secondary"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">E-mail</span>
-                    </a>
-
-                    <a href="https://api.whatsapp.com/send?phone=5511921586783" target="_blank" class="w-full py-5 glass-card rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-accent-success group">
-                        <i data-lucide="phone" class="w-6 h-6 text-accent-success"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">WhatsApp</span>
-                    </a>
-
-                    <a href="https://github.com/gfrabelo" target="_blank" class="w-full py-5 glass-card rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-accent-tertiary group">
-                        <i data-lucide="github" class="w-6 h-6 text-accent-tertiary"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">GitHub</span>
+                        <span class="group-hover:translate-x-1 transition-transform">Prefiro e-mail</span>
                     </a>
                 </div>
 
                 <div class="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-center gap-6 md:gap-12">
                     <div class="flex items-center gap-2 text-text-muted text-xs font-medium uppercase tracking-wide justify-center">
-                        <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-success"></i> Resposta Rápida
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-success"></i> Orçamento sem compromisso
                     </div>
                     <div class="flex items-center gap-2 text-text-muted text-xs font-medium uppercase tracking-wide justify-center">
-                        <i data-lucide="coffee" class="w-4 h-4 text-accent-success"></i> Sem Enrolação
+                        <i data-lucide="user" class="w-4 h-4 text-accent-success"></i> Você fala direto comigo
                     </div>
                 </div>
             </div>

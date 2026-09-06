@@ -1,0 +1,227 @@
+---
+const cases = [
+    {
+        image: "/img/aurea.webp",
+        color: "secondary",
+        title: "Aurea",
+        tag: "Agente de WhatsApp · Clínica estética",
+        desc: "Atende o lead na hora, tira as dúvidas de procedimento e já pré-agenda o horário na agenda da clínica. Em 7 dias rodando: 47 horas que a recepção não gastou respondendo mensagem, R$ 12.450 em procedimentos agendados pela IA e 61% dos leads virando agendamento.",
+        tags: ["47h economizadas", "R$ 12.450 em 7 dias", "61% viram agendamento"],
+    },
+    {
+        image: "/img/nexus-dark-mode.webp",
+        color: "success",
+        title: "Nexus",
+        tag: "Sistema de manutenção · Superiates",
+        desc: "Usado pela tripulação em alto mar, onde não existe internet. O sistema inteiro roda dentro do navegador, offline, e sincroniza quando o barco volta a ter sinal. Primeira venda fechada com contrato de um ano.",
+        tags: ["Cliente pagante", "Contrato de 1 ano", "Funciona sem internet"],
+    },
+    {
+        image: "/img/odin.webp",
+        color: "primary",
+        title: "Odin",
+        tag: "Assistente de IA · Pesquisa e escrita",
+        desc: "Uma equipe de agentes que pesquisa, qualifica e escreve sozinha, com uma pessoa aprovando antes de sair. É o tipo de sistema que eu monto quando o negócio precisa de mais do que um chatbot de resposta pronta.",
+        tags: ["Pesquisa sozinho", "Escreve sozinho", "Aprovação humana"],
+    },
+];
+
+const colorMap: Record<string, { text: string; bg: string; line: string; shadow: string }> = {
+    primary: { text: "text-accent-primary", bg: "from-accent-primary/20", line: "from-accent-primary", shadow: "rgba(99,102,241,0.2)" },
+    secondary: { text: "text-accent-secondary", bg: "from-accent-secondary/20", line: "from-accent-secondary", shadow: "rgba(139,92,246,0.2)" },
+    tertiary: { text: "text-accent-tertiary", bg: "from-accent-tertiary/20", line: "from-accent-tertiary", shadow: "rgba(6,182,212,0.2)" },
+    success: { text: "text-accent-success", bg: "from-accent-success/20", line: "from-accent-success", shadow: "rgba(16,185,129,0.2)" },
+};
+---
+
+<section id="prova" class="py-16 md:py-28 relative">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-7xl opacity-20 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-radial from-accent-primary/20 to-transparent blur-[100px]"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-12 max-w-6xl relative z-10">
+        <div class="text-center mb-16 md:mb-20 reveal">
+            <h2 class="text-sm font-bold text-accent-tertiary tracking-widest uppercase mb-3">Resultados</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 md:mb-6">
+                O que isso deu na prática
+            </h2>
+            <p class="text-text-secondary text-base md:text-lg max-w-2xl mx-auto">
+                Sistema rodando, cliente pagando e número pra mostrar.
+            </p>
+        </div>
+
+        <!-- Single shared container keeping all cards sticky together in a 3D deck -->
+        <div class="case-stack-container relative pb-12 sm:pb-20">
+            {cases.map((c, i) => {
+                const isLast = i === cases.length - 1;
+                return (
+                    <div
+                        class={`case-stack-card group glass-card sticky origin-top rounded-2xl sm:rounded-[32px] overflow-hidden ${
+                            isLast ? 'mb-0' : 'mb-[40vh] sm:mb-[45vh] lg:mb-[50vh]'
+                        }`}
+                        data-card-index={i}
+                        style={`--card-index: ${i}; z-index: ${i + 1};`}
+                    >
+                        <!-- Card Image Showcase -->
+                        <div class="relative h-[200px] sm:h-[260px] md:h-[300px] lg:h-[340px] xl:h-[370px] bg-black/40 border-b border-white/5 overflow-hidden">
+                            <img
+                                src={c.image}
+                                alt={c.title}
+                                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-bg-card/90 via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-5 sm:p-7 md:p-9 lg:p-10">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{c.title}</h3>
+                                <span class={`text-[11px] sm:text-xs font-mono font-medium uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 border border-white/10 ${colorMap[c.color].text}`}>
+                                    {c.tag}
+                                </span>
+                            </div>
+                            <p class="text-text-secondary leading-relaxed mb-6 text-sm sm:text-base max-w-3xl">{c.desc}</p>
+                            <div class="flex flex-wrap gap-2">
+                                {c.tags.map((tag) => (
+                                    <span class={`px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm ${colorMap[c.color].text} font-mono flex items-center gap-2`}>
+                                        <span class={`w-1.5 h-1.5 rounded-full ${colorMap[c.color].line.replace('from-', 'bg-')}`}></span>
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    </div>
+</section>
+
+<style>
+    .case-stack-card {
+        top: calc(72px + var(--card-index, 0) * 16px);
+        will-change: transform, filter;
+        transform-origin: top center;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5), 0 20px 45px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (min-width: 640px) {
+        .case-stack-card {
+            top: calc(80px + var(--card-index, 0) * 20px);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .case-stack-card {
+            top: calc(88px + var(--card-index, 0) * 26px);
+        }
+    }
+
+    /* Prevent hover conflict from overriding card stacking transform */
+    @media (hover: hover) {
+        .case-stack-card.glass-card:hover {
+            transform: inherit;
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.6), 0 25px 50px -10px rgba(99, 102, 241, 0.2);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .case-stack-card {
+            transform: none !important;
+            filter: none !important;
+        }
+    }
+</style>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
+    function initCaseStack() {
+        const cards = Array.from(document.querySelectorAll<HTMLElement>('.case-stack-card'));
+        if (!cards.length) return;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        let ticking = false;
+
+        function update() {
+            const viewportHeight = window.innerHeight;
+
+            cards.forEach((card, i) => {
+                const nextCard = cards[i + 1];
+
+                if (nextCard) {
+                    const nextRect = nextCard.getBoundingClientRect();
+                    const nextTargetTop = parseFloat(window.getComputedStyle(nextCard).top) || 88;
+
+                    // When nextCard top is at viewportHeight: progress = 0 (nextCard just entering from bottom).
+                    // When nextCard top reaches nextTargetTop: progress = 1 (nextCard docked at sticky top).
+                    const totalTravel = viewportHeight - nextTargetTop;
+                    const remainingDistance = nextRect.top - nextTargetTop;
+                    const progress = Math.min(Math.max(1 - (remainingDistance / totalTravel), 0), 1);
+
+                    // Easing curve for fluid, responsive momentum
+                    const easeProgress = Math.pow(progress, 1.15);
+
+                    // Primary scale & dimming for card[i] caused by card[i+1]
+                    let scale = 1 - easeProgress * 0.065; // smoothly scales down to 0.935
+                    let brightness = 1 - easeProgress * 0.35; // dims smoothly down to 0.65
+                    let blur = easeProgress * 1.5; // gentle depth blur
+                    let translateY = easeProgress * -6; // slight upward depth shift
+
+                    // Secondary scale & dimming for card[0] when card[2] also approaches
+                    if (i === 0 && cards[2]) {
+                        const card2 = cards[2];
+                        const card2Rect = card2.getBoundingClientRect();
+                        const card2TargetTop = parseFloat(window.getComputedStyle(card2).top) || 114;
+                        const card2TotalTravel = viewportHeight - card2TargetTop;
+                        const card2Remaining = card2Rect.top - card2TargetTop;
+                        const card2Progress = Math.min(Math.max(1 - (card2Remaining / card2TotalTravel), 0), 1);
+
+                        if (card2Progress > 0) {
+                            const ease2 = Math.pow(card2Progress, 1.15);
+                            scale -= ease2 * 0.055; // scales further down to ~0.88
+                            brightness -= ease2 * 0.2; // dims further down to ~0.45
+                            blur += ease2 * 1.5;
+                            translateY -= ease2 * 8;
+                        }
+                    }
+
+                    card.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+                    card.style.filter = `brightness(${brightness.toFixed(3)}) blur(${blur.toFixed(2)}px)`;
+                } else {
+                    // Last card always stays at full scale and pristine brightness
+                    card.style.transform = 'translate3d(0, 0, 0) scale(1)';
+                    card.style.filter = 'brightness(1) blur(0px)';
+                }
+            });
+
+            ticking = false;
+        }
+
+        function onScrollOrResize() {
+            if (!ticking) {
+                window.requestAnimationFrame(update);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScrollOrResize, { passive: true });
+        window.addEventListener('resize', onScrollOrResize, { passive: true });
+        update();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCaseStack);
+    } else {
+        initCaseStack();
+    }
+    document.addEventListener('astro:page-load', initCaseStack);
+</script>

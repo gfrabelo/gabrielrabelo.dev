@@ -1,49 +1,46 @@
 ---
+// Entries can be an image logo ({ src }) or, when there's no official logo
+// asset yet (e.g. LangGraph.js), a lucide icon ({ icon }).
 const logos = [
-  { src: '/img/html.png', alt: 'HTML5', name: 'HTML5' },
-  { src: '/img/js.png', alt: 'JavaScript', name: 'JavaScript' },
-  { src: '/img/Angular_gradient.png', alt: 'Angular', name: 'Angular' },
-  { src: '/img/sass.png', alt: 'Sass', name: 'Sass' },
-  { src: '/img/physics.png', alt: 'React', name: 'React' },
-  { src: '/img/node-js.png', alt: 'Node.js', name: 'Node.js' },
-  { src: '/img/python.png', alt: 'Python', name: 'Python' },
-  { src: '/img/github.png', alt: 'GitHub', name: 'GitHub' },
-  { src: '/img/figma.png', alt: 'Figma', name: 'Figma' },
-  { src: '/img/n8n-logo.png', alt: 'n8n', name: 'n8n' },
-  { src: '/img/claude.png', alt: 'Claude AI', name: 'Claude AI' },
-  { src: '/img/gemini.png', alt: 'Google Gemini', name: 'Google Gemini' },
-  { src: '/img/chatgpt.png', alt: 'ChatGPT', name: 'ChatGPT' },
-  { src: '/img/docker.png', alt: 'Docker', name: 'Docker' },
-  { src: '/img/supabase.png', alt: 'Supabase', name: 'Supabase' },
+  { icon: 'git-branch', alt: 'LangGraph.js', name: 'LangGraph.js' },
+  { icon: 'database', alt: 'pgvector', name: 'pgvector' },
+  { icon: 'network', alt: 'Orquestração Multiagente', name: 'Multiagente' },
+  { src: '/img/supabase.webp', alt: 'Supabase', name: 'Supabase' },
+  { src: '/img/claude.webp', alt: 'Claude AI', name: 'Claude AI' },
+  { src: '/img/gemini.webp', alt: 'Google Gemini', name: 'Google Gemini' },
+  { src: '/img/chatgpt.webp', alt: 'ChatGPT', name: 'ChatGPT' },
+  { src: '/img/n8n-logo.webp', alt: 'n8n', name: 'n8n' },
+  { src: '/img/python.webp', alt: 'Python', name: 'Python' },
+  { src: '/img/node-js.webp', alt: 'Node.js', name: 'Node.js' },
+  { src: '/img/physics.webp', alt: 'React', name: 'React' },
+  { src: '/img/js.webp', alt: 'JavaScript', name: 'JavaScript' },
+  { src: '/img/html.webp', alt: 'HTML5', name: 'HTML5' },
+  { src: '/img/Angular_gradient.webp', alt: 'Angular', name: 'Angular' },
+  { src: '/img/docker.webp', alt: 'Docker', name: 'Docker' },
+  { src: '/img/github.webp', alt: 'GitHub', name: 'GitHub' },
+  { src: '/img/figma.webp', alt: 'Figma', name: 'Figma' },
 ];
 ---
 
 <div class="w-full">
     <p class="text-xs text-text-muted mb-8 font-mono uppercase tracking-widest text-center">Stack Completo</p>
-    
+
     <div class="tech-carousel-wrapper-hero relative w-full">
         <div class="tech-carousel-hero flex gap-10 items-center">
-            {logos.map((logo) => (
+            {[...logos, ...logos].map((logo) => (
                 <div class="tech-logo-item-hero flex-shrink-0 group relative">
-                    <img 
-                        src={logo.src} 
-                        alt={logo.alt} 
-                        title={logo.name}
-                        class="w-14 h-14 md:w-16 md:h-16 object-contain transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" 
-                    />
-                    <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white bg-black/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                        {logo.name}
-                    </span>
-                </div>
-            ))}
-            {logos.map((logo) => (
-                <div class="tech-logo-item-hero flex-shrink-0 group relative">
-                    <img 
-                        src={logo.src} 
-                        alt={logo.alt} 
-                        title={logo.name}
-                        class="w-14 h-14 md:w-16 md:h-16 object-contain transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" 
-                    />
+                    {logo.src ? (
+                        <img
+                            src={logo.src}
+                            alt={logo.alt}
+                            title={logo.name}
+                            class="w-14 h-14 md:w-16 md:h-16 object-contain transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                        />
+                    ) : (
+                        <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center" title={logo.name}>
+                            <i data-lucide={logo.icon} class="w-9 h-9 md:w-10 md:h-10 text-white/70 group-hover:text-accent-primary group-hover:scale-110 transition-all duration-300"></i>
+                        </div>
+                    )}
                     <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-white bg-black/80 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
                         {logo.name}
                     </span>
@@ -52,3 +49,9 @@ const logos = [
         </div>
     </div>
 </div>
+
+<script>
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+</script>

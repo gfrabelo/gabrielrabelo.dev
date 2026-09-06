@@ -1,19 +1,38 @@
+---
+interface Props {
+    basePath?: string;
+}
+const { basePath = "" } = Astro.props;
+---
+
 <footer class="bg-black border-t border-white/10 pt-20 pb-10 relative">
     <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
             <div class="col-span-1 md:col-span-2">
                 <div class="text-2xl font-bold text-white mb-4 tracking-tighter">Gabriel Rabelo</div>
-                <p class="text-text-muted max-w-sm leading-relaxed">Full-Stack Engineer & AI Specialist. Produtos que funcionam de verdade, não só na demo. De São Paulo para o mundo.</p>
+                <p class="text-text-muted max-w-sm leading-relaxed">
+                    Criação de sites e automação de WhatsApp para pequenos negócios de
+                    serviço. Feito por quem passou 8 anos construindo sistema pra Nike
+                    e ANBIMA.
+                </p>
+                <p class="text-text-muted/70 max-w-sm leading-relaxed text-sm mt-4">
+                    Atendo Santos, São Vicente, Guarujá, Praia Grande, Cubatão, Peruíbe,
+                    Itanhaém, Mongaguá, Bertioga e São Paulo capital. Presencial na
+                    Baixada, online no resto.
+                </p>
+                <a href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona." target="_blank" class="inline-flex items-center gap-2 mt-6 text-accent-success hover:text-white transition-colors font-medium">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> (11) 92158-6783
+                </a>
             </div>
-            
+
             <div>
                 <h4 class="text-white font-bold mb-6">Explorar</h4>
                 <ul class="space-y-4 text-sm">
-                    <li><a href="#home" class="text-text-secondary hover:text-accent-primary transition-colors">Home</a></li>
-                    <li><a href="#sobre" class="text-text-secondary hover:text-accent-primary transition-colors">Sobre</a></li>
-                    <li><a href="#services" class="text-text-secondary hover:text-accent-primary transition-colors">Serviços</a></li>
-                    <li><a href="#portfolio" class="text-text-secondary hover:text-accent-primary transition-colors">Portfolio</a></li>
-                    <li><a href="#contato" class="text-text-secondary hover:text-accent-primary transition-colors">Contato</a></li>
+                    <li><a href={`${basePath}#home`} class="text-text-secondary hover:text-accent-primary transition-colors">Home</a></li>
+                    <li><a href={`${basePath}#oferta`} class="text-text-secondary hover:text-accent-primary transition-colors">O que eu faço</a></li>
+                    <li><a href={`${basePath}#prova`} class="text-text-secondary hover:text-accent-primary transition-colors">Resultados</a></li>
+                    <li><a href={`${basePath}#como-funciona`} class="text-text-secondary hover:text-accent-primary transition-colors">Como funciona</a></li>
+                    <li><a href={`${basePath}#contato`} class="text-text-secondary hover:text-accent-primary transition-colors">Contato</a></li>
                 </ul>
             </div>
         </div>
