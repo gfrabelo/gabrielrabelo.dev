@@ -1,0 +1,63 @@
+---
+const perfis = ["Empresário", "Profissional liberal", "Tecnologia", "Agência", "Outro"];
+const resourceEndpoint = import.meta.env.PUBLIC_RESOURCE_FORM_ENDPOINT;
+---
+
+<section id="recursos" class="py-16 md:py-32 relative overflow-hidden">
+    <div class="absolute right-[-10%] top-1/4 w-[480px] h-[480px] rounded-full bg-accent-secondary/10 blur-[120px] pointer-events-none"></div>
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+            <div class="reveal">
+                <p class="text-accent-success font-bold tracking-wider text-sm uppercase mb-4">Recursos gratuitos</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">Use o que já funciona nos meus projetos.</h2>
+                <p class="text-text-secondary text-lg leading-relaxed mb-10">Agentes, templates, skills e materiais práticos que você pode adaptar ao seu negócio.</p>
+
+                <article class="glass-card rounded-[32px] p-7 md:p-9 border border-accent-success/20 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-success via-accent-tertiary to-transparent"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-accent-success/10 border border-accent-success/20 flex items-center justify-center mb-7"><i data-lucide="bot" class="w-7 h-7 text-accent-success"></i></div>
+                    <span class="text-xs font-mono uppercase tracking-wider text-accent-success">Template prático · Markdown</span>
+                    <h3 class="text-2xl font-bold text-white mt-3 mb-4">Agente de pré-atendimento no WhatsApp</h3>
+                    <p class="text-text-secondary leading-relaxed mb-6">Um roteiro-base para responder, entender a necessidade, qualificar o contato e encaminhar a próxima ação sem parecer robótico.</p>
+                    <ul class="flex flex-wrap gap-2 text-xs text-text-muted">
+                        <li class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">Objetivo e limites</li>
+                        <li class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">Fluxo de qualificação</li>
+                        <li class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">Prompt editável</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="glass-card rounded-[32px] p-7 md:p-9 reveal" id="captura-recurso">
+                <p class="text-sm font-bold text-white mb-2">Acessar gratuitamente</p>
+                <p class="text-sm text-text-muted mb-7">Preencha os dados para liberar o material agora.</p>
+                <form id="resource-form" class="space-y-5" data-resource="agente-pre-atendimento-whatsapp" data-download="/files/agente-pre-atendimento-whatsapp.md" data-endpoint={resourceEndpoint}>
+                    <div>
+                        <label for="resource-name" class="block text-sm text-text-secondary mb-2">Nome</label>
+                        <input id="resource-name" name="name" type="text" autocomplete="name" required class="input-premium w-full rounded-xl px-4 py-3.5 text-white outline-none" placeholder="Como posso te chamar?" />
+                    </div>
+                    <div>
+                        <label for="resource-email" class="block text-sm text-text-secondary mb-2">E-mail</label>
+                        <input id="resource-email" name="email" type="email" autocomplete="email" required class="input-premium w-full rounded-xl px-4 py-3.5 text-white outline-none" placeholder="voce@empresa.com.br" />
+                    </div>
+                    <div>
+                        <label for="resource-profile" class="block text-sm text-text-secondary mb-2">Qual é o seu perfil?</label>
+                        <select id="resource-profile" name="profile" required class="input-premium w-full rounded-xl px-4 py-3.5 text-white outline-none">
+                            <option value="" class="bg-bg-card">Selecione uma opção</option>
+                            {perfis.map((perfil) => <option value={perfil} class="bg-bg-card">{perfil}</option>)}
+                        </select>
+                    </div>
+                    <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" /><input type="hidden" name="utm_term" />
+                    <button type="submit" data-track="resource_click" data-track-label="agente-pre-atendimento-whatsapp" class="w-full py-4 rounded-xl bg-white text-bg-main font-bold flex items-center justify-center gap-2 hover:-translate-y-1 transition-transform">
+                        Acessar gratuitamente <i data-lucide="download" class="w-5 h-5"></i>
+                    </button>
+                    <p class="text-xs text-text-muted text-center">Sem spam. Seus dados não são enviados a terceiros.</p>
+                </form>
+                <div id="resource-success" class="hidden text-center py-8" role="status" aria-live="polite">
+                    <div class="w-14 h-14 rounded-full bg-accent-success/10 flex items-center justify-center mx-auto mb-5"><i data-lucide="check" class="w-7 h-7 text-accent-success"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Material liberado.</h3>
+                    <p class="text-text-secondary mb-6">Se o download não começar, use o botão abaixo.</p>
+                    <a href="/files/agente-pre-atendimento-whatsapp.md" download class="inline-flex items-center gap-2 text-accent-success font-medium">Baixar novamente <i data-lucide="download" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

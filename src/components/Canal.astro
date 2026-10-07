@@ -1,62 +1,54 @@
-<section id="canal" class="py-16 md:py-32 relative bg-bg-surface border-y border-white/5">
-    <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
-        <div class="glass-card rounded-[40px] p-8 md:p-16 border border-white/10 relative overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
-                <div>
-                    <span class="text-accent-primary font-bold tracking-wider text-sm uppercase mb-4 block">
-                        <span data-i18n="pt">Conteúdo</span><span data-i18n="en" hidden>Content</span>
-                    </span>
-                    <h2 class="text-2xl md:text-4xl font-bold text-white mb-6">
-                        <span data-i18n="pt">O Portfólio Público Também Vende.</span>
-                        <span data-i18n="en" hidden>The Public Portfolio Also Sells.</span>
-                    </h2>
-                    <p class="text-text-secondary text-lg mb-6 leading-relaxed">
-                        <span data-i18n="pt">Falo sobre Claude Code, harness de IA e construção de agentes no canal <strong class="text-white">@GabrielRabeloIA</strong>. Conteúdo técnico e prático, sem hype de "nova IA da vez".</span>
-                        <span data-i18n="en" hidden>I talk about Claude Code, AI harnesses, and building agents on my channel, <strong class="text-white">@GabrielRabeloIA</strong>. Practical, technical content, no "latest AI hype" filler.</span>
-                    </p>
-                    <p class="text-text-secondary text-lg mb-8 leading-relaxed">
-                        <span data-i18n="pt">Foi lá que o sócio da Nexus me encontrou, sem eu ter prospectado nada.</span>
-                        <span data-i18n="en" hidden>That's how my Nexus co-founder found me, without me prospecting at all.</span>
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <div class="flex flex-col">
-                            <span class="text-2xl font-bold text-white">~1.500</span>
-                            <span class="text-xs text-text-muted uppercase">
-                                <span data-i18n="pt">Inscritos</span><span data-i18n="en" hidden>Subscribers</span>
-                            </span>
-                        </div>
-                        <div class="w-px h-10 bg-white/10"></div>
-                        <div class="flex flex-col">
-                            <span class="text-2xl font-bold text-white">1</span>
-                            <span class="text-xs text-text-muted uppercase">
-                                <span data-i18n="pt">Sócio Encontrado</span><span data-i18n="en" hidden>Co-founder Found</span>
-                            </span>
-                        </div>
-                    </div>
-                    <a
-                        href="https://www.youtube.com/@GabrielRabeloIA"
-                        target="_blank"
-                        class="inline-flex items-center gap-3 mt-10 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-accent-primary/50 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 group"
-                    >
-                        <i data-lucide="youtube" class="w-5 h-5 text-accent-primary"></i>
-                        <span data-i18n="pt">Ver Canal</span><span data-i18n="en" hidden>Watch the Channel</span>
-                        <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
-                    </a>
-                </div>
-                <div class="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden group flex items-center justify-center bg-gradient-to-br from-accent-primary/10 to-transparent border border-white/5">
-                    <i data-lucide="youtube" class="w-24 h-24 text-white/10 group-hover:text-accent-primary/30 transition-colors duration-500"></i>
-                    <div class="absolute bottom-6 left-6 glass-card px-4 py-2 rounded-lg flex items-center gap-2">
-                        <i data-lucide="mic" class="w-4 h-4 text-accent-primary"></i>
-                        <span class="text-sm font-medium text-white">@GabrielRabeloIA</span>
-                    </div>
-                </div>
+---
+const videos = [
+    {
+        id: "o-MKf8A4EgI",
+        title: "Criei um Agente de WhatsApp que Atende Sozinho",
+        eyebrow: "Claude Code + skill grátis",
+        featured: true,
+    },
+    {
+        id: "plH2tvy37r0",
+        title: "Construí Meu Próprio Jarvis com Claude Code + Obsidian",
+        eyebrow: "Agentes na prática",
+        featured: false,
+    },
+    {
+        id: "pbtTTcMxTQQ",
+        title: "Criei uma Landing Page Profissional em 5 Minutos",
+        eyebrow: "Antigravity + 255 skills",
+        featured: false,
+    },
+];
+---
+
+<section id="conteudo" class="py-16 md:py-32 relative bg-bg-surface border-y border-white/5">
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+            <div class="max-w-3xl">
+                <p class="text-accent-primary font-bold tracking-wider text-sm uppercase mb-4">Conteúdo</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-5 tracking-tight">Eu também compartilho como construo tudo isso.</h2>
+                <p class="text-text-secondary text-lg leading-relaxed">No YouTube eu mostro, na prática, como crio agentes, automações e produtos usando IA.</p>
             </div>
+            <a href="https://www.youtube.com/@GabrielRabeloIA" target="_blank" rel="noopener noreferrer" data-track="youtube_channel_click" class="inline-flex items-center gap-3 text-white font-medium px-6 py-3 rounded-full border border-white/15 hover:border-accent-primary/60 hover:bg-white/5 transition-all group">
+                <i data-lucide="youtube" class="w-5 h-5 text-red-400"></i> Ver canal
+                <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 reveal">
+            {videos.map((video) => (
+                <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" data-track="youtube_video_click" data-track-label={video.title} class:list={["group glass-card rounded-[28px] overflow-hidden", video.featured ? "lg:col-span-3 lg:row-span-2" : "lg:col-span-2"]}>
+                    <div class:list={["relative overflow-hidden bg-black", video.featured ? "aspect-video" : "aspect-[16/8]"]}>
+                        <img src={`https://i.ytimg.com/vi/${video.id}/hq720.jpg`} alt={`Capa do vídeo: ${video.title}`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true"><span class="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform"><i data-lucide="play" class="w-6 h-6 fill-current ml-1"></i></span></span>
+                    </div>
+                    <div class:list={[video.featured ? "p-7 md:p-9" : "p-6"]}>
+                        <p class="text-xs font-mono uppercase tracking-wider text-accent-tertiary mb-3">{video.eyebrow}</p>
+                        <h3 class:list={["font-bold text-white leading-tight group-hover:text-accent-tertiary transition-colors", video.featured ? "text-2xl md:text-3xl" : "text-lg"]}>{video.title}</h3>
+                    </div>
+                </a>
+            ))}
         </div>
     </div>
 </section>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>

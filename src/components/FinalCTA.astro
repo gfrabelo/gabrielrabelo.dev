@@ -1,0 +1,22 @@
+---
+const whatsapp = "https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20tenho%20um%20processo%20que%20est%C3%A1%20fazendo%20minha%20empresa%20perder%20tempo%20ou%20dinheiro.";
+---
+
+<section id="contato" class="py-16 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-radial from-accent-primary/10 to-bg-main pointer-events-none"></div>
+    <div class="container mx-auto px-6 relative z-10 flex justify-center">
+        <div class="max-w-3xl w-full glass-card p-8 md:p-14 rounded-[40px] border border-white/10 shadow-2xl reveal relative overflow-hidden text-center">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-accent-primary to-transparent opacity-70"></div>
+            <p class="text-sm font-bold text-accent-success tracking-widest uppercase mb-5">Vamos encontrar o gargalo</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-5 tracking-tight">Tem algum processo fazendo sua empresa perder tempo ou dinheiro?</h2>
+            <p class="text-text-secondary text-lg max-w-2xl mx-auto mb-9">Se existe atendimento lento, trabalho manual demais ou oportunidade sendo perdida, provavelmente existe uma forma mais inteligente de resolver.</p>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="final_cta" class="inline-flex items-center justify-center gap-3 py-4 px-8 bg-accent-success/15 hover:bg-accent-success/25 rounded-full text-white font-bold text-lg transition-all border-2 border-accent-success/50 hover:border-accent-success hover:-translate-y-1">
+                <i data-lucide="message-circle" class="w-6 h-6 text-accent-success"></i> Falar no WhatsApp
+            </a>
+            <div class="mt-8 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-center gap-4 sm:gap-10 text-xs text-text-muted uppercase tracking-wide">
+                <span class="flex items-center justify-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-accent-success"></i> Conversa sem compromisso</span>
+                <span class="flex items-center justify-center gap-2"><i data-lucide="user" class="w-4 h-4 text-accent-success"></i> Você fala direto comigo</span>
+            </div>
+        </div>
+    </div>
+</section>

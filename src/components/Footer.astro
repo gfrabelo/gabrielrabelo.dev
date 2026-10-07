@@ -1,55 +1,38 @@
 ---
-interface Props {
-    basePath?: string;
-}
+interface Props { basePath?: string; }
 const { basePath = "" } = Astro.props;
+const links = [
+    { href: '#solucoes', label: 'Soluções' }, { href: '#resultados', label: 'Resultados' },
+    { href: '#como-funciona', label: 'Como funciona' }, { href: '#conteudo', label: 'Conteúdo' },
+    { href: '#recursos', label: 'Recursos' }, { href: '#sobre', label: 'Sobre' },
+];
 ---
 
 <footer class="bg-black border-t border-white/10 pt-20 pb-10 relative">
     <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            <div class="col-span-1 md:col-span-2">
-                <div class="text-2xl font-bold text-white mb-4 tracking-tighter">Gabriel Rabelo</div>
-                <p class="text-text-muted max-w-sm leading-relaxed">
-                    Criação de sites e automação de WhatsApp para pequenos negócios de
-                    serviço. Feito por quem passou 8 anos construindo sistema pra Nike
-                    e ANBIMA.
-                </p>
-                <p class="text-text-muted/70 max-w-sm leading-relaxed text-sm mt-4">
-                    Atendo Santos, São Vicente, Guarujá, Praia Grande, Cubatão, Peruíbe,
-                    Itanhaém, Mongaguá, Bertioga e São Paulo capital. Presencial na
-                    Baixada, online no resto.
-                </p>
-                <a href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona." target="_blank" class="inline-flex items-center gap-2 mt-6 text-accent-success hover:text-white transition-colors font-medium">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i> (11) 92158-6783
-                </a>
+            <div class="md:col-span-2">
+                <div class="text-2xl font-bold text-white mb-4 tracking-tighter">Gabriel Rabelo<span class="text-accent-primary">.</span></div>
+                <p class="text-text-muted max-w-md leading-relaxed">Sistemas digitais, automações e soluções com IA para empresas venderem mais, operarem melhor e recuperarem tempo.</p>
+                <p class="text-text-muted/70 max-w-md leading-relaxed text-sm mt-4">Atendimento direto, da estratégia à entrega. Baseado em Santos, com projetos para empresas de qualquer lugar.</p>
+                <div class="flex flex-wrap gap-5 mt-6">
+                    <a href="https://api.whatsapp.com/send?phone=5511921586783" target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="footer" class="inline-flex items-center gap-2 text-accent-success hover:text-white transition-colors font-medium"><i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
+                    <a href="https://www.youtube.com/@GabrielRabeloIA" target="_blank" rel="noopener noreferrer" data-track="youtube_channel_click" data-track-location="footer" class="inline-flex items-center gap-2 text-text-secondary hover:text-white transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i> YouTube</a>
+                    <a href="https://www.linkedin.com/in/gabrielrabelob/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-text-secondary hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn</a>
+                </div>
             </div>
-
             <div>
-                <h4 class="text-white font-bold mb-6">Explorar</h4>
-                <ul class="space-y-4 text-sm">
-                    <li><a href={`${basePath}#home`} class="text-text-secondary hover:text-accent-primary transition-colors">Home</a></li>
-                    <li><a href={`${basePath}#oferta`} class="text-text-secondary hover:text-accent-primary transition-colors">O que eu faço</a></li>
-                    <li><a href={`${basePath}#prova`} class="text-text-secondary hover:text-accent-primary transition-colors">Resultados</a></li>
-                    <li><a href={`${basePath}#como-funciona`} class="text-text-secondary hover:text-accent-primary transition-colors">Como funciona</a></li>
-                    <li><a href={`${basePath}#contato`} class="text-text-secondary hover:text-accent-primary transition-colors">Contato</a></li>
+                <h2 class="text-white font-bold mb-6">Explorar</h2>
+                <ul class="grid grid-cols-2 gap-x-5 gap-y-4 text-sm">
+                    {links.map((link) => <li><a href={`${basePath}${link.href}`} class="text-text-secondary hover:text-accent-primary transition-colors">{link.label}</a></li>)}
                 </ul>
             </div>
         </div>
-
         <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-text-muted text-xs">© 2026 Gabriel Rabelo. Todos os direitos reservados.</p>
-            <p class="text-text-muted text-xs flex items-center gap-1">Feito com <i data-lucide="heart" class="w-3 h-3 text-accent-primary fill-current"></i> & Código</p>
+            <p class="text-text-muted text-xs">Estratégia, produto e código.</p>
         </div>
     </div>
 </footer>
 
-<a href="#home" class="fixed bottom-8 right-8 w-12 h-12 glass-card rounded-full flex items-center justify-center text-white hover:bg-accent-primary hover:border-accent-primary transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none z-40" id="scroll-top">
-    <i data-lucide="arrow-up" class="w-5 h-5"></i>
-</a>
-
-<script>
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-</script>
+<a href="#home" class="fixed bottom-8 right-8 w-12 h-12 glass-card rounded-full flex items-center justify-center text-white hover:bg-accent-primary hover:border-accent-primary transition-all hover:scale-110 opacity-0 pointer-events-none z-40" id="scroll-top" aria-label="Voltar ao topo"><i data-lucide="arrow-up" class="w-5 h-5"></i></a>

@@ -2,160 +2,39 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
+import Pilares from '../components/Pilares.astro';
+import Resultados from '../components/Resultados.astro';
 import Oferta from '../components/Oferta.astro';
+import SystemFlow from '../components/SystemFlow.astro';
 import Cases from '../components/Cases.astro';
+import Credenciais from '../components/Credenciais.astro';
 import ComoFunciona from '../components/ComoFunciona.astro';
+import Canal from '../components/Canal.astro';
+import Recursos from '../components/Recursos.astro';
+import TechCarousel from '../components/TechCarousel.astro';
 import About from '../components/About.astro';
-import LegacyTile from '../components/LegacyTile.astro';
+import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 import Scripts from '../components/Scripts.astro';
-
-const legacyRow1 = [
-    { src: '/img/anbima.webp', alt: 'ANBIMA Certificações', category: 'Enterprise', title: 'ANBIMA Certificações', desc: 'Sistema de certificações financeiras com +120 MRs. Next.js, Zustand, Adyen.', chip: 'ANBIMA 2024-2026', accent: 'primary' as const, idleBorder: true },
-    { src: '/img/zenflow.webp', alt: 'ZenFlow', category: 'Aprendizado', title: 'ZenFlow', desc: 'Assistente financeiro com WhatsApp + IA que não validou mercado. Mas foi a ponte: o sócio da Nexus me achou por causa dele.', chip: 'Descontinuado', accent: 'success' as const, idleBorder: true },
-    { src: '/img/membership-nike.webp', alt: 'Nike Membership', category: 'E-Commerce', title: 'Nike Membership', desc: 'Plataforma de fidelidade e benefícios exclusivos.', chip: 'Nike Brasil', accent: 'primary' as const },
-    { src: '/img/central-de-uniformes-nike.webp', alt: 'Nike Central de Uniformes', category: 'B2B Platform', title: 'Central de Uniformes', desc: 'Sistema de gestão de uniformes corporativos Nike.', chip: 'Nike Brasil', accent: 'tertiary' as const },
-];
-
-const legacyRow2 = [
-    { src: '/img/cartao-presente-nike.webp', alt: 'Nike Cartão Presente', category: 'Gift Cards', title: 'Cartão Presente', desc: 'Plataforma de gift cards digitais Nike.', chip: 'Nike Brasil', accent: 'secondary' as const },
-    { src: '/img/encontre-seu-tenis.webp', alt: 'Nike Encontre seu tênis', category: 'Interactive', title: 'Encontre seu Tênis', desc: 'Quiz interativo para recomendação de produtos.', chip: 'Nike Brasil', accent: 'success' as const },
-    { src: '/img/carlinhos-maia-jequiti.webp', alt: 'Promo Jequiti Carlinhos Maia', category: 'Campaign', title: 'Promo Carlinhos Maia', desc: 'Landing page promocional pra campanha nacional.', chip: 'Jequiti', accent: 'primary' as const },
-    { src: '/img/eliana-jequiti.webp', alt: 'Promo Jequiti Eliana', category: 'Campaign', title: 'Promo Eliana', desc: 'Campanha digital com alta taxa de conversão.', chip: 'Jequiti', accent: 'secondary' as const },
-];
 ---
 
-<BaseLayout>
+<BaseLayout title="Sistemas, Automações e IA para Empresas | Gabriel Rabelo" description="Sistemas digitais, automações e soluções com IA para empresas venderem mais, reduzirem custos e eliminarem trabalho manual.">
     <Navigation />
-    <Hero />
-    <Oferta />
-    <Cases />
-    <About />
-
-    <section id="trabalhos-anteriores" class="py-16 md:py-32 bg-bg-surface relative border-y border-white/5">
-        <div class="container mx-auto px-6 lg:px-12 max-w-7xl">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
-                <div>
-                    <h2 class="text-sm font-bold text-accent-success tracking-widest uppercase mb-4">Onde já entreguei</h2>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Marcas que confiaram esse trabalho a mim</h2>
-                    <p class="text-text-secondary">Nike, ANBIMA e Jequiti. Projeto grande, prazo apertado, no ar funcionando.</p>
-                </div>
-            </div>
-
-            <div class="portfolio-marquee-wrapper reveal space-y-6">
-                <div class="portfolio-marquee-mask relative w-full overflow-hidden">
-                    <div class="portfolio-marquee-row flex gap-6" data-row="1">
-                        {[...legacyRow1, ...legacyRow1, ...legacyRow1].map((tile) => (
-                            <LegacyTile {...tile} />
-                        ))}
-                    </div>
-                </div>
-                <div class="portfolio-marquee-mask relative w-full overflow-hidden">
-                    <div class="portfolio-marquee-row flex gap-6" data-row="2">
-                        {[...legacyRow2, ...legacyRow2, ...legacyRow2].map((tile) => (
-                            <LegacyTile {...tile} />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        .portfolio-marquee-mask {
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-        }
-        .portfolio-marquee-row {
-            will-change: transform;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .portfolio-marquee-row {
-                transform: none !important;
-            }
-        }
-    </style>
-
-    <script>
-        function initPortfolioMarquee() {
-            const section = document.getElementById('trabalhos-anteriores');
-            const rowEl1 = section?.querySelector('[data-row="1"]') as HTMLElement | null;
-            const rowEl2 = section?.querySelector('[data-row="2"]') as HTMLElement | null;
-            if (!section || !rowEl1 || !rowEl2) return;
-            const row1: HTMLElement = rowEl1;
-            const row2: HTMLElement = rowEl2;
-
-            const K = 140;
-            let sectionTop = 0;
-
-            function measure() {
-                sectionTop = section.getBoundingClientRect().top + window.scrollY;
-            }
-            measure();
-
-            let ticking = false;
-            function update() {
-                const offset = (window.scrollY - sectionTop + window.innerHeight) * 0.3;
-                row1.style.transform = `translateX(${offset - K}px)`;
-                row2.style.transform = `translateX(${-(offset - K)}px)`;
-                ticking = false;
-            }
-            function onScroll() {
-                if (!ticking) {
-                    window.requestAnimationFrame(update);
-                    ticking = true;
-                }
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
-            update();
-        }
-
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            initPortfolioMarquee();
-        }
-    </script>
-
-    <ComoFunciona />
-
-    <section id="contato" class="py-16 md:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-radial from-accent-primary/10 to-bg-main z-0 pointer-events-none"></div>
-        <div class="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-        <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
-            <div class="max-w-2xl w-full glass-card p-8 md:p-14 rounded-[40px] border border-white/10 shadow-2xl reveal relative overflow-hidden">
-
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-accent-primary to-transparent opacity-50 blur-sm"></div>
-
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Quanto está te custando ficar como está?</h2>
-                    <p class="text-text-secondary text-lg">Me manda uma mensagem contando do seu negócio. Eu respondo pessoalmente e digo se dá pra ajudar.</p>
-                </div>
-
-                <div class="space-y-4">
-                    <a href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona." target="_blank" class="w-full py-5 bg-accent-success/15 hover:bg-accent-success/25 rounded-xl text-white font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 border-2 border-accent-success/50 hover:border-accent-success group">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-accent-success"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">Falar no WhatsApp</span>
-                    </a>
-
-                    <a href="mailto:gabrielrabelob@gmail.com" class="w-full py-5 glass-card rounded-xl text-white font-medium text-lg hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-3 border border-white/20 hover:border-accent-secondary group">
-                        <i data-lucide="mail" class="w-6 h-6 text-accent-secondary"></i>
-                        <span class="group-hover:translate-x-1 transition-transform">Prefiro e-mail</span>
-                    </a>
-                </div>
-
-                <div class="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-center gap-6 md:gap-12">
-                    <div class="flex items-center gap-2 text-text-muted text-xs font-medium uppercase tracking-wide justify-center">
-                        <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-success"></i> Orçamento sem compromisso
-                    </div>
-                    <div class="flex items-center gap-2 text-text-muted text-xs font-medium uppercase tracking-wide justify-center">
-                        <i data-lucide="user" class="w-4 h-4 text-accent-success"></i> Você fala direto comigo
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <main>
+        <Hero />
+        <Pilares />
+        <Resultados />
+        <Oferta />
+        <SystemFlow />
+        <Cases />
+        <Credenciais />
+        <ComoFunciona />
+        <Canal />
+        <Recursos />
+        <section class="py-16 md:py-24 border-y border-white/5 overflow-hidden" aria-label="Tecnologia por trás das soluções"><TechCarousel /></section>
+        <About />
+        <FinalCTA />
+    </main>
     <Footer />
     <Scripts />
 </BaseLayout>

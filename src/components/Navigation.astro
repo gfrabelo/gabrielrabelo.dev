@@ -1,248 +1,61 @@
 ---
-interface Props {
-    basePath?: string;
-}
+interface Props { basePath?: string; }
 const { basePath = "" } = Astro.props;
+const links = [
+    { href: "#solucoes", label: "Soluções" },
+    { href: "#resultados", label: "Resultados" },
+    { href: "#como-funciona", label: "Como funciona" },
+    { href: "#conteudo", label: "Conteúdo" },
+    { href: "#recursos", label: "Recursos" },
+    { href: "#sobre", label: "Sobre" },
+];
+const whatsapp = "https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20quero%20entender%20onde%20a%20tecnologia%20pode%20gerar%20resultado%20no%20meu%20neg%C3%B3cio.";
 ---
 
-<nav
-    class="fixed top-0 w-full z-50 glass-nav h-20 transition-all duration-300"
-    aria-label="Navegação principal"
->
-    <div
-        class="container mx-auto px-6 lg:px-12 h-full flex justify-between items-center max-w-7xl"
-    >
-        <a href={`${basePath}#home`} class="group flex items-center gap-2">
-            <span
-                class="text-xl font-bold tracking-tight text-white/90 group-hover:text-white transition-colors duration-300"
-                >Gabriel Rabelo<span class="text-accent-primary">.</span></span
-            >
+<nav class="fixed top-0 w-full z-50 glass-nav h-20 transition-all duration-300" aria-label="Navegação principal">
+    <div class="container mx-auto px-6 lg:px-12 h-full flex justify-between items-center max-w-7xl">
+        <a href={`${basePath}#home`} class="group flex items-center gap-2" aria-label="Gabriel Rabelo — início">
+            <span class="text-xl font-bold tracking-tight text-white/90 group-hover:text-white transition-colors">Gabriel Rabelo<span class="text-accent-primary">.</span></span>
         </a>
 
-        <div class="hidden md:flex items-center gap-8">
-            <a
-                href={`${basePath}#oferta`}
-                class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
-            >
-                O que eu faço
-                <span
-                    class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
-                ></span>
-            </a>
-            <a
-                href={`${basePath}#prova`}
-                class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
-            >
-                Resultados
-                <span
-                    class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
-                ></span>
-            </a>
-            <a
-                href={`${basePath}#como-funciona`}
-                class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
-            >
-                Como funciona
-                <span
-                    class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
-                ></span>
-            </a>
-            <a
-                href={`${basePath}#contato`}
-                class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors duration-300 group"
-            >
-                Contato
-                <span
-                    class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all duration-300 group-hover:w-full"
-                ></span>
-            </a>
+        <div class="hidden lg:flex items-center gap-5 xl:gap-7">
+            {links.map((link) => (
+                <a href={`${basePath}${link.href}`} class="relative text-sm font-medium text-text-secondary hover:text-white transition-colors group">
+                    {link.label}<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent-primary transition-all group-hover:w-full"></span>
+                </a>
+            ))}
         </div>
 
         <div class="flex items-center gap-3">
-            <a
-                href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona."
-                target="_blank"
-                class="hidden md:flex items-center gap-2 bg-accent-success/10 hover:bg-accent-success/20 border border-accent-success/40 hover:border-accent-success text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 group relative overflow-hidden"
-            >
-                <i data-lucide="message-circle" class="w-4 h-4 text-accent-success"></i>
-                <span class="relative z-10">Pedir orçamento</span>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="navigation" class="hidden md:flex items-center gap-2 bg-accent-success/10 hover:bg-accent-success/20 border border-accent-success/40 hover:border-accent-success text-white text-sm font-medium px-5 py-2.5 rounded-full transition-all hover:scale-105">
+                <i data-lucide="message-circle" class="w-4 h-4 text-accent-success"></i><span>Falar sobre meu negócio</span>
             </a>
-            <!-- Fluid Menu for Mobile -->
-            <div class="md:hidden relative z-50">
-                <div
-                    id="fluid-menu-container"
-                    class="relative w-12 h-12"
-                    data-expanded="false"
-                >
-                    <div class="relative">
-                        <!-- Toggle Button (Always visible) -->
-                        <div
-                            id="fluid-menu-toggle"
-                            class="relative w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 cursor-pointer rounded-full z-50 flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg"
-                        >
-                            <div class="relative w-6 h-6">
-                                <!-- Menu Icon -->
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="absolute inset-0 w-6 h-6 text-white transition-all duration-300 ease-in-out origin-center menu-icon opacity-100 scale-100 rotate-0"
-                                >
-                                    <line x1="4" x2="20" y1="12" y2="12"
-                                    ></line><line x1="4" x2="20" y1="6" y2="6"
-                                    ></line><line x1="4" x2="20" y1="18" y2="18"
-                                    ></line>
-                                </svg>
-                                <!-- X Icon -->
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="absolute inset-0 w-6 h-6 text-white transition-all duration-300 ease-in-out origin-center close-icon opacity-0 scale-0 -rotate-180"
-                                >
-                                    <path d="M18 6 6 18"></path><path
-                                        d="m6 6 12 12"></path>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <!-- Items Container -->
-                        <!-- Item 1: Home -->
-                        <a
-                            href={`${basePath}#home`}
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
-                            style="z-index: 40;"
-                            aria-label="Home"
-                        >
-                            <i data-lucide="home" class="w-5 h-5"></i>
-                        </a>
-                        <!-- Item 2: O que eu faço -->
-                        <a
-                            href={`${basePath}#oferta`}
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
-                            style="z-index: 39;"
-                            aria-label="O que eu faço"
-                        >
-                            <i data-lucide="layout-grid" class="w-5 h-5"></i>
-                        </a>
-                        <!-- Item 3: Resultados -->
-                        <a
-                            href={`${basePath}#prova`}
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
-                            style="z-index: 38;"
-                            aria-label="Resultados"
-                        >
-                            <i data-lucide="chart-no-axes-column" class="w-5 h-5"></i>
-                        </a>
-                        <!-- Item 4: Como funciona -->
-                        <a
-                            href={`${basePath}#como-funciona`}
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
-                            style="z-index: 37;"
-                            aria-label="Como funciona"
-                        >
-                            <i data-lucide="route" class="w-5 h-5"></i>
-                        </a>
-                        <!-- Item 5: WhatsApp -->
-                        <a
-                            href="https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20queria%20entender%20como%20funciona."
-                            target="_blank"
-                            class="fluid-menu-item absolute top-0 left-0 w-12 h-12 bg-accent-success/20 backdrop-blur-md border border-accent-success/40 rounded-full flex items-center justify-center text-white opacity-0 pointer-events-none transition-all duration-300"
-                            style="z-index: 36;"
-                            aria-label="Falar no WhatsApp"
-                        >
-                            <i data-lucide="message-circle" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <button id="mobile-menu-toggle" type="button" class="lg:hidden w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+                <i data-lucide="menu" class="w-5 h-5 menu-open-icon"></i><i data-lucide="x" class="w-5 h-5 menu-close-icon hidden"></i>
+            </button>
         </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-20 left-0 right-0 glass-nav border-t border-white/5 px-6 py-6 shadow-2xl">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 gap-2">
+            {links.map((link) => <a href={`${basePath}${link.href}`} class="mobile-nav-link px-4 py-3 rounded-xl text-text-secondary hover:text-white hover:bg-white/5 transition-colors">{link.label}</a>)}
+        </div>
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="mobile_navigation" class="md:hidden mt-4 w-full flex items-center justify-center gap-2 bg-accent-success/15 border border-accent-success/40 text-white font-medium px-5 py-3 rounded-xl"><i data-lucide="message-circle" class="w-4 h-4 text-accent-success"></i> Falar no WhatsApp</a>
     </div>
 </nav>
 
 <script>
-    // Fluid Menu Logic
-    const container = document.getElementById("fluid-menu-container");
-    const toggleBtn = document.getElementById("fluid-menu-toggle");
-    const menuIcon = toggleBtn?.querySelector(".menu-icon");
-    const closeIcon = toggleBtn?.querySelector(".close-icon");
-    const items = document.querySelectorAll(".fluid-menu-item");
-    let isExpanded = false;
-
-    function toggleMenu() {
-        isExpanded = !isExpanded;
-
-        // Toggle Icon Animation
-        if (isExpanded) {
-            menuIcon?.classList.add("opacity-0", "scale-0", "rotate-180");
-            menuIcon?.classList.remove("opacity-100", "scale-100", "rotate-0");
-            closeIcon?.classList.add("opacity-100", "scale-100", "rotate-0");
-            closeIcon?.classList.remove("opacity-0", "scale-0", "-rotate-180");
-        } else {
-            menuIcon?.classList.remove("opacity-0", "scale-0", "rotate-180");
-            menuIcon?.classList.add("opacity-100", "scale-100", "rotate-0");
-            closeIcon?.classList.remove("opacity-100", "scale-100", "rotate-0");
-            closeIcon?.classList.add("opacity-0", "scale-0", "-rotate-180");
-        }
-
-        // Animated Items
-        items.forEach((item, index) => {
-            const htmlItem = item as HTMLElement;
-            if (isExpanded) {
-                // Open state
-                htmlItem.style.transform = `translateY(${(index + 1) * 56}px)`;
-                htmlItem.style.opacity = "1";
-                htmlItem.style.pointerEvents = "auto";
-
-                // Add unique transition delay for "fluid" effect
-                htmlItem.style.transition = `transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 50}ms, opacity 300ms ease-out ${index * 50}ms`;
-            } else {
-                // Closed state
-                htmlItem.style.transform = `translateY(0px)`;
-                htmlItem.style.opacity = "0";
-                htmlItem.style.pointerEvents = "none";
-
-                // Reverse delay for closing
-                const reverseIndex = items.length - 1 - index;
-                htmlItem.style.transition = `transform 300ms cubic-bezier(0.4, 0, 0.2, 1) ${reverseIndex * 30}ms, opacity 200ms ease-in ${reverseIndex * 30}ms`;
-            }
-        });
-    }
-
-    // Toggle Click
-    toggleBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleMenu();
-    });
-
-    // Close on Item Click
-    items.forEach((item) => {
-        item.addEventListener("click", () => {
-            if (isExpanded) toggleMenu();
-        });
-    });
-
-    // Close on Outside Click
-    document.addEventListener("click", (e) => {
-        if (isExpanded && container && !container.contains(e.target as Node)) {
-            toggleMenu();
-        }
-    });
-
-    // Initialize Lucide icons if not already done
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const openIcon = toggle?.querySelector('.menu-open-icon');
+    const closeIcon = toggle?.querySelector('.menu-close-icon');
+    const setMenu = (open: boolean) => {
+        menu?.classList.toggle('hidden', !open);
+        openIcon?.classList.toggle('hidden', open);
+        closeIcon?.classList.toggle('hidden', !open);
+        toggle?.setAttribute('aria-expanded', String(open));
+        toggle?.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    };
+    toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.querySelectorAll('.mobile-nav-link').forEach((link) => link.addEventListener('click', () => setMenu(false)));
 </script>
