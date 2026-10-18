@@ -1,11 +1,41 @@
 ---
+import GradientWaves from './GradientWaves.jsx';
+
 const whatsapp = "https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Gabriel%2C%20vi%20seu%20site%20e%20quero%20entender%20onde%20a%20tecnologia%20pode%20gerar%20resultado%20no%20meu%20neg%C3%B3cio.";
 ---
 
 <section id="home" class="relative min-h-[92vh] flex items-center pt-32 pb-20 overflow-hidden">
-    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-primary/20 rounded-full blur-[120px] animate-pulse-slow"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-accent-secondary/20 rounded-full blur-[100px] animate-pulse-slow delay-1000"></div>
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+        <GradientWaves
+            client:load
+            horizonColor="#312e81"
+            waveColor="#4f46e5"
+            crestColor="#67e8f9"
+            backgroundColor="#020410"
+            speed={0.18}
+            amplitude={2.1}
+            waveScale={0.52}
+            waveRatio={0.82}
+            swell={30}
+            turbulence={16}
+            tilt={68}
+            zoom={0.92}
+            height={5.2}
+            fogDepth={19}
+            relief={0.75}
+            lightAngle={118}
+            sheen={0.22}
+            brightness={0.68}
+            opacity={0.9}
+            grain={0.12}
+            quality="medium"
+            parallaxStrength={0.28}
+            mouseStrength={0.35}
+            swellOnClick={true}
+            dpr={1.5}
+        />
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,transparent_0%,rgba(2,4,16,0.12)_34%,rgba(2,4,16,0.82)_100%)] pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-bg-main/20 via-transparent to-bg-main pointer-events-none"></div>
     </div>
 
     <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10 w-full">
@@ -64,6 +94,5 @@ const whatsapp = "https://api.whatsapp.com/send?phone=5511921586783&text=Oi%20Ga
 <style>
     @keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
     .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-    .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    @media (prefers-reduced-motion: reduce) { .animate-float-slow, .animate-pulse-slow { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .animate-float-slow { animation: none; } }
 </style>

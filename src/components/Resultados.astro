@@ -1,8 +1,8 @@
 ---
 const resultados = [
-    { value: "47h", label: "economizadas em 7 dias", detail: "pela recepção da clínica" },
-    { value: "R$ 12.450", label: "em procedimentos agendados", detail: "pela IA em 7 dias" },
-    { value: "61%", label: "dos leads viraram agendamento", detail: "no case Aurea" },
+    { value: "Atendimento", label: "respostas consistentes no WhatsApp", detail: "inclusive fora do horário comercial" },
+    { value: "Pré-agendamento", label: "leads conduzidos até a agenda", detail: "com menos trabalho manual na recepção" },
+    { value: "Operação", label: "mais organizada para a equipe", detail: "com histórico e contexto centralizados" },
 ];
 ---
 
@@ -11,7 +11,7 @@ const resultados = [
     <div class="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal">
             <div class="max-w-3xl">
-                <p class="text-sm font-bold text-accent-success tracking-widest uppercase mb-4">Resultado real</p>
+                <p class="text-sm font-bold text-accent-success tracking-widest uppercase mb-4">Impacto na operação</p>
                 <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Quando a tecnologia resolve o problema certo, o impacto aparece no negócio.</h2>
             </div>
             <a href="#cases" data-track="results_click" data-track-location="results_section" class="inline-flex items-center gap-2 text-white font-medium hover:text-accent-tertiary transition-colors">Ver os cases <i data-lucide="arrow-down" class="w-4 h-4"></i></a>
@@ -25,6 +25,5 @@ const resultados = [
                 </div>
             ))}
         </div>
-        <p class="text-xs text-text-muted mt-4 text-right">Dados do case Aurea no período inicial de 7 dias.</p>
     </div>
 </section>
