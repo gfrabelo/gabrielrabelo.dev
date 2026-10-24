@@ -1,0 +1,542 @@
+.trace {
+  --trace-line: rgb(255 255 255 / 0.08);
+  --trace-line-strong: rgb(255 255 255 / 0.14);
+  --trace-panel: rgb(11 13 22);
+  --trace-cyan: rgb(34 211 238);
+  --trace-green: rgb(52 211 153);
+  --trace-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --trace-muted: rgb(113 128 150);
+
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Trace panel */
+
+.trace-panel {
+  border: 1px solid var(--trace-line);
+  border-radius: 16px;
+  background: var(--trace-panel);
+  overflow: hidden;
+}
+
+.trace-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--trace-line);
+}
+
+.trace-head-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgb(248 250 252);
+}
+
+.trace-head-sub {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: rgb(148 163 184);
+}
+
+.trace-live,
+.trace-replay {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.trace-live {
+  color: var(--trace-cyan);
+}
+
+.trace-live i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  animation: trace-pulse 1.4s ease-in-out infinite;
+}
+
+.trace-replay {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--trace-line-strong);
+  border-radius: 999px;
+  color: rgb(203 213 225);
+  transition: color 150ms, border-color 150ms, background-color 150ms;
+}
+
+.trace-replay:focus-visible {
+  outline: 2px solid var(--trace-cyan);
+  outline-offset: 2px;
+}
+
+.trace-replay:hover {
+  color: white;
+  border-color: rgb(255 255 255 / 0.28);
+  background: rgb(255 255 255 / 0.04);
+}
+
+.trace-steps {
+  position: relative;
+  padding: 0.75rem 0;
+}
+
+/* The rail runs through the dots; its fill tracks how far the run has gone. */
+.trace-rail {
+  position: absolute;
+  top: 2.05rem;
+  bottom: 2.05rem;
+  left: calc(1.5rem + 5.75rem + 0.75rem + 4px);
+  width: 1px;
+  background: var(--trace-line-strong);
+}
+
+.trace-rail-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(var(--trace-cyan), var(--trace-green));
+  transform-origin: top;
+  transition: transform 600ms var(--trace-ease);
+}
+
+.trace-step-row {
+  display: grid;
+  grid-template-columns: 5.75rem 9px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 0.75rem;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  text-align: left;
+  transition: background-color 200ms;
+}
+
+.trace-step-row:hover {
+  background: rgb(255 255 255 / 0.025);
+}
+
+.trace-step-row:focus-visible {
+  outline: 2px solid var(--trace-cyan);
+  outline-offset: -2px;
+}
+
+.trace-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--trace-muted);
+  white-space: nowrap;
+}
+
+.trace-dot {
+  position: relative;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 999px;
+  background: var(--trace-panel);
+  transition: background-color 300ms, border-color 300ms, transform 400ms var(--trace-ease);
+}
+
+.trace-step-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.trace-step-copy strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--trace-muted);
+  transition: color 300ms;
+}
+
+.trace-step-copy span {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--trace-muted);
+  transition: color 300ms;
+}
+
+.trace-metric {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--trace-cyan);
+  white-space: nowrap;
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity 400ms var(--trace-ease), filter 400ms var(--trace-ease);
+}
+
+.trace-step.is-done .trace-metric {
+  opacity: 1;
+  filter: none;
+  transition-delay: 250ms;
+}
+
+.trace-step.is-done .trace-time {
+  color: rgb(148 163 184);
+}
+
+.trace-step.is-done .trace-dot {
+  border-color: var(--trace-cyan);
+  background: var(--trace-cyan);
+}
+
+.trace-step.is-done .trace-step-copy strong {
+  color: rgb(248 250 252);
+}
+
+.trace-step.is-done .trace-step-copy span {
+  color: rgb(148 163 184);
+}
+
+.trace-step.is-open .trace-step-row {
+  background: rgb(255 255 255 / 0.03);
+}
+
+.trace-step.is-open .trace-dot {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 4px rgb(34 211 238 / 0.15);
+}
+
+.trace-step:last-child.is-done .trace-dot {
+  border-color: var(--trace-green);
+  background: var(--trace-green);
+}
+
+.trace-step:last-child .trace-metric {
+  color: var(--trace-green);
+}
+
+/* Inspector */
+
+.trace-inspector {
+  display: grid;
+  margin: 0 1.5rem 1.25rem;
+  border: 1px solid var(--trace-line);
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.02);
+}
+
+.trace-layer {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(3px);
+  transition: opacity 150ms, filter 150ms, visibility 0s 150ms;
+}
+
+.trace-layer.is-active {
+  opacity: 1;
+  visibility: visible;
+  filter: none;
+  transition: opacity 350ms var(--trace-ease) 100ms, filter 350ms var(--trace-ease) 100ms, visibility 0s;
+}
+
+.trace-idle {
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--trace-muted);
+  text-align: center;
+}
+
+.trace-layer-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgb(226 232 240);
+}
+
+.trace-layer-title span {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  color: var(--trace-cyan);
+}
+
+.trace-chat {
+  margin-bottom: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trace-bubble {
+  max-width: 85%;
+  padding: 0.55rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.trace-bubble.is-lead {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  background: rgb(255 255 255 / 0.06);
+  color: rgb(226 232 240);
+}
+
+.trace-bubble.is-agente {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background: rgb(34 211 238 / 0.12);
+  color: rgb(207 250 254);
+}
+
+.trace-fields {
+  margin-bottom: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.trace-fields dt {
+  font-size: 0.7rem;
+  color: var(--trace-muted);
+}
+
+.trace-fields dd {
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgb(226 232 240);
+}
+
+.trace-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--trace-line);
+  font-size: 0.75rem;
+  color: var(--trace-muted);
+}
+
+.trace-context em {
+  font-style: normal;
+  color: rgb(203 213 225);
+}
+
+.trace-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--trace-line);
+  font-size: 0.8rem;
+  color: rgb(148 163 184);
+}
+
+.trace-foot strong {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgb(248 250 252);
+}
+
+/* Second brain */
+
+.brain {
+  position: sticky;
+  top: 6.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--trace-line);
+  border-radius: 16px;
+}
+
+.brain-status {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--trace-line);
+  font-size: 0.8rem;
+  color: var(--trace-muted);
+}
+
+.brain-status span {
+  display: inline-block;
+}
+
+.brain-status em {
+  font-style: normal;
+  font-weight: 500;
+  color: rgb(226 232 240);
+}
+
+.brain-head h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgb(248 250 252);
+}
+
+.brain-head p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgb(148 163 184);
+}
+
+.brain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.brain-area {
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--trace-line);
+  border-radius: 12px;
+  transition: border-color 350ms var(--trace-ease), background-color 350ms var(--trace-ease);
+}
+
+.brain-area-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 0.5rem;
+}
+
+.brain-area-top strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(226 232 240);
+}
+
+.brain-signal {
+  font-size: 0.68rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 250ms;
+}
+
+.brain-notes {
+  margin-top: 0.45rem;
+}
+
+.brain-notes li {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--trace-muted);
+  transition: color 350ms;
+}
+
+.brain-area.is-reading {
+  border-color: rgb(34 211 238 / 0.45);
+  background: rgb(34 211 238 / 0.05);
+}
+
+.brain-area.is-reading .brain-signal {
+  opacity: 1;
+  color: var(--trace-cyan);
+}
+
+.brain-area.is-writing {
+  border-color: rgb(52 211 153 / 0.45);
+  background: rgb(52 211 153 / 0.05);
+}
+
+.brain-area.is-writing .brain-signal {
+  opacity: 1;
+  color: var(--trace-green);
+}
+
+.brain-area.is-reading .brain-notes li,
+.brain-area.is-writing .brain-notes li {
+  color: rgb(148 163 184);
+}
+
+@keyframes trace-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 1023px) {
+  .trace {
+    grid-template-columns: 1fr;
+  }
+
+  .brain {
+    position: static;
+  }
+}
+
+@media (max-width: 639px) {
+  .trace-head,
+  .trace-foot {
+    padding-inline: 1rem;
+  }
+
+  .trace-rail {
+    left: calc(1rem + 4px);
+    top: 1.9rem;
+    bottom: 2.6rem;
+  }
+
+  /* On phones the timestamp moves above the title so the copy keeps its width. */
+  .trace-step-row {
+    grid-template-columns: 9px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'dot time metric'
+      '. copy copy';
+    row-gap: 0.25rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .trace-dot { grid-area: dot; }
+  .trace-time { grid-area: time; }
+  .trace-metric { grid-area: metric; }
+  .trace-step-copy { grid-area: copy; }
+
+  .trace-inspector {
+    margin: 0 1rem 1rem;
+  }
+
+  .trace-layer {
+    padding: 0.85rem;
+  }
+
+  .trace-bubble {
+    max-width: 100%;
+  }
+
+  .trace-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brain {
+    padding: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-live i {
+    animation: none;
+  }
+
+  .trace-layer,
+  .trace-metric,
+  .trace-rail-fill {
+    filter: none !important;
+    transition-duration: 0s !important;
+  }
+}
