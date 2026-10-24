@@ -269,7 +269,7 @@ export default function GradientWaves({
   paused = false,
   dpr = 2,
   className = '',
-  style
+  style = undefined
 }) {
   const containerRef = useRef(null);
   const horizon = useMemo(() => parseColor(horizonColor, [0.32, 0.15, 1]) ?? [0.32, 0.15, 1], [horizonColor]);
