@@ -15,33 +15,98 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/img/coding.png', Astro.site).href;
 
 // Local business schema: this is what makes Google understand *what* is sold and
-// *where*, which is the whole game for local service search.
+// *where*, which is the whole game for local service search. The Person node is
+// what lets AI models tie "Gabriel Rabelo" to this site instead of a namesake.
+const siteUrl = new URL('/', Astro.site).href;
+const personId = `${siteUrl}#gabriel`;
+const businessId = `${siteUrl}#negocio`;
+const sameAs = [
+  'https://www.linkedin.com/in/gabrielrabelob/',
+  'https://github.com/gfrabelo',
+  'https://www.youtube.com/@GabrielRabeloIA',
+];
+const address = {
+  '@type': 'PostalAddress',
+  addressLocality: 'Santos',
+  addressRegion: 'SP',
+  addressCountry: 'BR',
+};
+const servicos = [
+  ['Agente de IA no WhatsApp', 'Agente que responde clientes no tom da marca, qualifica o contato, pré-agenda e registra no CRM, inclusive fora do horário comercial.'],
+  ['Automação de processos e integrações', 'Conexão entre WhatsApp, agenda, planilhas e CRM para eliminar tarefas repetitivas e retrabalho.'],
+  ['Sistemas web e painéis internos', 'Aplicações sob medida, inclusive offline-first, para operação e tomada de decisão.'],
+  ['Sites e landing pages', 'Páginas de captação ligadas ao atendimento e ao CRM.'],
+];
+
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Gabriel Rabelo | Sistemas, Automações e IA',
-  description,
-  url: 'https://gabrielrabelo.dev',
-  telephone: '+5511921586783',
-  email: 'gabrielrabelob@gmail.com',
-  priceRange: '$$',
-  image: ogImage,
-  founder: { '@type': 'Person', name: 'Gabriel Rabelo' },
-  areaServed: [
-    'Santos', 'São Vicente', 'Guarujá', 'Praia Grande', 'Cubatão',
-    'Peruíbe', 'Itanhaém', 'Mongaguá', 'Bertioga', 'São Paulo',
-  ].map((city) => ({ '@type': 'City', name: city })),
-  knowsAbout: [
-    'Sistemas digitais para empresas',
-    'Automação de processos',
-    'Inteligência artificial aplicada a negócios',
-    'Agentes de atendimento',
-    'Integração de sistemas',
-  ],
-  sameAs: [
-    'https://www.linkedin.com/in/gabrielrabelob/',
-    'https://github.com/gfrabelo',
-    'https://www.youtube.com/@GabrielRabeloIA',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#site`,
+      url: siteUrl,
+      name: 'Gabriel Rabelo',
+      inLanguage: 'pt-BR',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Gabriel Rabelo',
+      url: siteUrl,
+      image: new URL('/img/eu.jpg', Astro.site).href,
+      jobTitle: 'Desenvolvedor de sistemas, automações e agentes de IA',
+      description: 'Desenvolvedor baseado em Santos (SP) que passou oito anos construindo sistemas para Nike do Brasil, ANBIMA e Jequiti e hoje cria sistemas, automações e agentes de IA para pequenas e médias empresas.',
+      email: 'gabrielrabelob@gmail.com',
+      address,
+      knowsAbout: [
+        'Agentes de IA',
+        'Automação de processos',
+        'Claude',
+        'LangGraph',
+        'n8n',
+        'Desenvolvimento web',
+      ],
+      sameAs,
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': businessId,
+      name: 'Gabriel Rabelo | Sistemas, Automações e IA',
+      description,
+      url: siteUrl,
+      telephone: '+5511921586783',
+      email: 'gabrielrabelob@gmail.com',
+      priceRange: '$$',
+      image: ogImage,
+      address,
+      founder: { '@id': personId },
+      areaServed: [
+        'Santos', 'São Vicente', 'Guarujá', 'Praia Grande', 'Cubatão',
+        'Peruíbe', 'Itanhaém', 'Mongaguá', 'Bertioga', 'São Paulo',
+      ].map((city) => ({ '@type': 'City', name: city })),
+      knowsAbout: [
+        'Sistemas digitais para empresas',
+        'Automação de processos',
+        'Inteligência artificial aplicada a negócios',
+        'Agentes de atendimento',
+        'Integração de sistemas',
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Serviços',
+        itemListElement: servicos.map(([name, desc]) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name,
+            description: desc,
+            provider: { '@id': businessId },
+          },
+        })),
+      },
+      sameAs,
+    },
   ],
 };
 ---

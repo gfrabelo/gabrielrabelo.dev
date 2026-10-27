@@ -1,0 +1,74 @@
+---
+// Respostas diretas e autocontidas: é o formato que buscadores e IAs extraem e citam.
+// O mesmo array gera o HTML e o schema FAQPage, então os dois nunca divergem.
+const perguntas = [
+    {
+        q: "O que o Gabriel Rabelo faz?",
+        a: "Gabriel Rabelo cria sistemas digitais, automações e agentes de inteligência artificial para pequenas e médias empresas. Depois de oito anos construindo sistemas para Nike do Brasil, ANBIMA e Jequiti, hoje ele atende empresas que querem vender mais, reduzir custo operacional e eliminar trabalho manual.",
+    },
+    {
+        q: "Você atende empresas de Santos e da Baixada Santista?",
+        a: "Sim. Sou baseado em Santos (SP) e atendo empresas de Santos, São Vicente, Guarujá, Praia Grande, Cubatão, Bertioga, Peruíbe, Itanhaém, Mongaguá e São Paulo. Também faço projetos remotos para empresas de qualquer lugar do Brasil.",
+    },
+    {
+        q: "Como funciona um agente de IA no WhatsApp?",
+        a: "O agente responde seus clientes no WhatsApp no tom da sua marca, usando preço, horário e regras reais do seu negócio. Ele tira dúvidas, entende a necessidade e a urgência, pré-agenda na sua agenda e registra o contato no CRM, inclusive fora do horário comercial. Quando o caso pede uma pessoa, ele encaminha para a equipe.",
+    },
+    {
+        q: "Quanto custa um projeto?",
+        a: "Depende do problema a resolver, por isso começo com uma conversa de 15 minutos. Depois envio uma proposta com escopo, preço e data de entrega fechados. Não cobro por hora e não aparece custo novo no meio do caminho.",
+    },
+    {
+        q: "Quanto tempo leva para ficar pronto?",
+        a: "O prazo vem fechado na proposta, junto com o preço. Depois da entrega eu testo com você usando de verdade e acompanho as primeiras semanas para ajustar o que for preciso.",
+    },
+    {
+        q: "Preciso trocar os sistemas que já uso?",
+        a: "Não. Na maioria dos casos eu conecto as ferramentas que sua empresa já usa, como WhatsApp, agenda, planilhas e CRM, para a informação seguir sozinha de uma etapa para a outra.",
+    },
+    {
+        q: "Que tipo de empresa você já atendeu?",
+        a: "Clínicas, operações de superiates, produção de conteúdo e empresas de grande porte como Nike, ANBIMA e Jequiti. O ponto em comum é um processo que consome tempo ou deixa oportunidades escaparem.",
+    },
+    {
+        q: "Com quem eu falo durante o projeto?",
+        a: "Comigo, do orçamento à entrega. Não tem agência no meio, atendente ou projeto repassado para outra pessoa.",
+    },
+];
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: perguntas.map((p) => ({
+        "@type": "Question",
+        name: p.q,
+        acceptedAnswer: { "@type": "Answer", text: p.a },
+    })),
+};
+---
+
+<section id="faq" class="py-16 md:py-32 relative overflow-hidden">
+    <div class="container mx-auto px-6 lg:px-12 max-w-4xl">
+        <div class="mb-16 reveal text-center">
+            <h2 class="text-sm font-bold text-accent-primary tracking-widest uppercase mb-4">Perguntas frequentes</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">O que costumam me perguntar</h2>
+        </div>
+
+        <div class="space-y-4">
+            {perguntas.map((p) => (
+                <details class="group glass-card rounded-3xl px-6 md:px-8 py-6 reveal">
+                    <summary class="flex items-center justify-between gap-6 cursor-pointer list-none">
+                        <h3 class="text-lg md:text-xl font-semibold text-white">{p.q}</h3>
+                        <i data-lucide="plus" class="w-5 h-5 flex-shrink-0 text-text-secondary transition-transform duration-300 group-open:rotate-45"></i>
+                    </summary>
+                    <p class="mt-4 text-text-secondary leading-relaxed">{p.a}</p>
+                </details>
+            ))}
+        </div>
+    </div>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>
+
+<style>
+    summary::-webkit-details-marker { display: none; }
+</style>

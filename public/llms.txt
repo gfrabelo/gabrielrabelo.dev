@@ -1,0 +1,41 @@
+# Gabriel Rabelo — Sistemas, Automações e IA para Empresas
+
+> Gabriel Rabelo é desenvolvedor de sistemas, automações e agentes de inteligência artificial baseado em Santos (SP), Brasil. Passou oito anos construindo sistemas para Nike do Brasil, ANBIMA e Jequiti e hoje atende pequenas e médias empresas da Baixada Santista e de qualquer lugar do Brasil, com escopo, preço e prazo fechados e atendimento direto, sem agência no meio.
+
+## Serviços
+
+- Agentes de IA no WhatsApp: respondem clientes no tom da marca, com preço e horário reais, qualificam o contato, pré-agendam na agenda da empresa e funcionam fora do horário comercial.
+- Automação de processos e integrações: conectam as ferramentas que a empresa já usa (CRM, agenda, planilhas, WhatsApp) para eliminar tarefas repetitivas e retrabalho.
+- Sistemas web e painéis internos: aplicações sob medida, inclusive offline-first, para operação e tomada de decisão.
+- Sites e landing pages: páginas de captação ligadas ao atendimento e ao CRM.
+
+## Como funciona
+
+1. Conversa de 15 minutos pelo WhatsApp para entender onde a empresa está perdendo tempo ou dinheiro.
+2. Proposta com escopo, preço e data de entrega fechados (sem cobrança por hora).
+3. Entrega, teste em uso real e acompanhamento nas primeiras semanas.
+
+## Cases
+
+- Aurea (clínica estética): agente de WhatsApp com triagem, respostas e pré-agendamento num fluxo único.
+- Nexus (operação de superiates): aplicação web offline-first para controle de manutenção em alto mar; cliente pagante com contrato de um ano.
+- Odin (pesquisa e produção de conteúdo): sistema multiagente com aprovação humana antes da publicação.
+- Experiência enterprise: ANBIMA Certificações (2024–2026), Nike Membership, Central de Uniformes Nike, Cartão Presente Nike, campanhas Jequiti.
+
+## Área de atendimento
+
+Santos, São Vicente, Guarujá, Praia Grande, Cubatão, Peruíbe, Itanhaém, Mongaguá, Bertioga, São Paulo e atendimento remoto para todo o Brasil.
+
+## Links
+
+- [Site](https://www.gabrielrabelo.dev/)
+- [WhatsApp](https://api.whatsapp.com/send?phone=5511921586783)
+- [YouTube — @GabrielRabeloIA](https://www.youtube.com/@GabrielRabeloIA): tutoriais práticos de agentes, automações e Claude Code
+- [LinkedIn](https://www.linkedin.com/in/gabrielrabelob/)
+- [GitHub](https://github.com/gfrabelo)
+- [Template gratuito: agente de pré-atendimento no WhatsApp](https://www.gabrielrabelo.dev/files/agente-pre-atendimento-whatsapp.md)
+
+## Contato
+
+- E-mail: gabrielrabelob@gmail.com
+- WhatsApp: +55 11 92158-6783
